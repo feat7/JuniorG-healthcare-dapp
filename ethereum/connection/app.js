@@ -1,13 +1,13 @@
+const web3 = require( '../web3' );
+
 const dorgan_artifact = require('../build/contracts/dOrgan.json');
 
 const ethers = require('ethers');
 
 let web3Provider = ethers.getDefaultProvider('ropsten');
-let contractAddress = "0xAeBC7188a0EE7eCf67eCbaa03c3C0f32a7615AF4";
+let contractAddress = "0xE4714548c4A6089368E7477B6691a2264D0b4a31";
 
 var dOrgan =  new ethers.Contract(contractAddress, dorgan_artifact['abi'], web3Provider);
-
-import web3 from '../web3';
 
 module.exports = {
     getAdmin: async function() {
@@ -183,6 +183,14 @@ module.exports = {
     },
     transplantDeadDonor: async function(recAddr,donorAddr) {
         return dOrgan.transplantDeadDonor(recAddr,donorAddr,{from: web3.eth.defaultAccount})
+            .then(function() {
+                return "success";
+            }).catch(function(e) {
+                return e;
+            });
+    },
+    getTransplant: async function(recAddr) {
+        return dOrgan.getTransplant(recAddr,{from: web3.eth.defaultAccount})
             .then(function() {
                 return "success";
             }).catch(function(e) {
