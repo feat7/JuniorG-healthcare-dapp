@@ -12,69 +12,81 @@ export default class Main extends Component {
     render() {
         return (
             <React.Fragment>
+                <meta charSet="utf-8"/>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <Header/>
                 <body>
-                    <nav className="navbar" role="navigation" aria-label="main navigation">
-                        <div className="navbar-brand">
-                            <a className="navbar-item" href="/">
-                                <img src="./static/images/logo.png" />
-                            </a>
-
-                            <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false"
-                               data-target="navbarBasicExample">
-                                <span aria-hidden="true"></span>
-                                <span aria-hidden="true"></span>
-                                <span aria-hidden="true"></span>
-                            </a>
-                        </div>
-
-                        <div id="navbarBasicExample" className="navbar-menu">
-                            <div className="navbar-start">
-                                <a className="navbar-item">
-                                    Junior G
-                                </a>
-
-                                <a className="navbar-item">
-                                    Home
-                                </a>
-
-                                <a className="navbar-item">
-                                    Track Status
-                                </a>
-
-                            </div>
-
-                            <div className="navbar-end">
-                                <div className="navbar-item">
-                                    <div className="buttons">
-                                        <a className="button is-primary">
-                                            <strong>Sign up</strong>
-                                        </a>
-                                        <a className="button is-light">
-                                            Log in
-                                        </a>
+                <section className="hero is-fullheight is-default is-bold">
+                    <div className="hero-head">
+                        <nav className="navbar">
+                            <div className="container">
+                                <div className="navbar-brand">
+                                    <a className="navbar-item" href="../">
+                                        <img src="./static/images/logo.png" alt="Junior G" />
+                                    </a>
+                                    <span className="navbar-burger burger" data-target="navbarMenu">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </span>
+                                </div>
+                                <div id="navbarMenu" className="navbar-menu">
+                                    <div className="navbar-end">
+                                        <div className="tabs is-right">
+                                            <ul>
+                                                <li className="is-active"><a>Home</a></li>
+                                                <li><a href="">Examples</a></li>
+                                                <li><a href="">Features</a></li>
+                                                <li><a href="">Team</a></li>
+                                                <li><a href="">Help</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </nav>
-                    <div className="columns">
-                        <div className="column">
-                            <img src="./static/images/donate.svg" />
-                        </div>
-                        <div className="column">
-                            <section className="hero">
-                                <div className="hero-body">
-                                    <h1 className="title">
-                                        Hero title
-                                    </h1>
-                                    <h2 className="subtitle">
-                                        Hero subtitle
-                                    </h2>
+                        </nav>
+                    </div>
+                    <div className="hero-body">
+                        <div className="container has-text-centered">
+                            <div className="columns is-vcentered">
+                                <div className="column is-5">
+                                    <figure className="image is-4by3">
+                                        <img src="./static/images/donate.svg" alt="Description" />
+                                    </figure>
                                 </div>
-                            </section>
+                                <div className="column is-6 is-offset-1">
+                                    <h1 className="title is-2">
+                                        Junior G
+                                    </h1>
+                                    <h2 className="subtitle is-4">
+                                        Online transparent platform for managing and monitoring organ transplant
+                                    </h2>
+                                    <br/>
+                                        <p className="has-text-centered">
+                                            <a className="button is-medium is-info is-outlined">
+                                                Need an organ
+                                            </a>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <a className="button is-medium is-info is-outlined">
+                                                Donate an organ
+                                            </a>
+                                        </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <div className="hero-foot">
+                        <div className="container">
+                            <div className="tabs is-centered">
+                                <ul>
+                                    <li><a>And this is the bottom</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 </body>
             </React.Fragment>
         );
