@@ -21,6 +21,7 @@
   "homepage": "https://github.com/feat7/JuniorG-healthcare-dapp#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "mongoose": "^5.4.13",
     "next": "^8.0.1",
     "next-routes": "^1.4.2",
     "react": "^16.8.2",
