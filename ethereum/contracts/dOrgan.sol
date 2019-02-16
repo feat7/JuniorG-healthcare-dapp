@@ -212,4 +212,8 @@ contract dOrgan{
             delete deadDonors[donor1];
         }
     }
+
+    function getTransplant(address reciever1)public view verifyAdmin returns(address){
+        return transplants[reciever1].donor;
+    }
 }

@@ -10,7 +10,7 @@ const handle = routes.getRequestHandler(app);
 
 
 // Register Models
-require("./registerModels");
+// require("./registerModels");
 
 app.prepare().then(() => {
     const port = 8000 || process.env.PORT;
