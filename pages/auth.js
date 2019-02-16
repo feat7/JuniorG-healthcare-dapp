@@ -2,33 +2,64 @@ import React from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
+import {login, register} from '../utils/auth';
+
 
 export default class Register extends React.Component {
     state = {
+        fullName: '',
         email: '',
-        password: ''
+        password: '',
+        repassword: '',
+        dob: '',
+        bloodGroup: '',
+        rhFactor: '',
     };
 
     handleLogin(){
-        fetch('/server/api/users/login', {
-            method: 'POST',
-            body: {
-                user: {
-                    email: this.state.email,
-                    password: this.state.password
-                }
-            },
-            headers: {
-                "Content-Type": "application/json"
+        let data = {
+            "user": {
+                "email": this.state.email,
+                "password": this.state.password
             }
-        }).then(function(response) {
-            // response.status     //=> number 100–599
-            // response.statusText //=> String
-            // response.headers    //=> Headers
-            // response.url        //=> String
+        };
+        login(data).then(function(response){
             console.log(response);
-        }, function(error) {
-            console.log(error.message); //=> String
+        });
+        // fetch('/server/api/users/login', {
+        //     method: 'POST',
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     }
+        // }).then(function(response) {
+        //     // response.status     //=> number 100–599
+        //     // response.statusText //=> String
+        //     // response.headers    //=> Headers
+        //     // response.url        //=> String
+        //     console.log(response);
+        // }, function(error) {
+        //     console.log(error.message); //=> String
+        // });
+    }
+
+    handleRegister(){
+        let data = {
+            "user": {
+                "email": this.state.email,
+                "password": this.state.password,
+                "repassword": this.state.repassword,
+                "fullName": this.state.fullName,
+                "dob": this.state.dob,
+                "bloodGroup": this.state.bloodGroup,
+                "rhFactor": this.state.rhFactor,
+                "place": this.state.place,
+                "userType": this.state.userType,
+            }
+        };
+
+        register(data).then(function(response){
+            console.log(response);
         });
     }
 
@@ -75,7 +106,7 @@ export default class Register extends React.Component {
                                             <footer className="card-footer">
                                                 <a onClick={() => {
                                                     this.handleLogin()
-                                                }} href="#" className="card-footer-item button is-primary">Login</a>
+                                                }} href="#" className="card-footer-item">Login</a>
                                             </footer>
                                         </div>
                                     </div>
@@ -95,25 +126,100 @@ export default class Register extends React.Component {
                                                 <div className="content">
                                                     <div className="field">
                                                         <div className="control">
-                                                            <input value={this.state.email} className="input" type="text" placeholder="Email" onChange={(e) => {
-                                                                this.setState({ email: e.target.value })
+                                                            <input value={this.state.fullName} className="input" type="text" placeholder="Full Name" onChange={(e) => {
+                                                                this.setState({ fullName: e.target.value })
                                                             }}/>
                                                         </div>
                                                     </div>
-                                                    <div className="field">
-                                                        <div className="control">
-                                                            <input value={this.state.password} className="input" type="password" placeholder="Password" onChange={(e) => {
-                                                                this.setState({ password: e.target.value })
-                                                            }}/>
+                                                    <div className="columns">
+                                                        <div className="column is-two-thirds">
+                                                            <div className="field">
+                                                                <div className="control">
+                                                                    <input value={this.state.email} className="input" type="email" placeholder="Email" onChange={(e) => {
+                                                                        this.setState({ email: e.target.value })
+                                                                    }}/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="column">
+                                                            <div className="field">
+                                                                <div className="control">
+                                                                    <div className="select is-info">
+                                                                        <select>
+                                                                            <option default value="">User Type</option>
+                                                                            <option value="Donor">Donor</option>
+                                                                            <option value="Receiver">Receiver</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div onClick={() => {
-                                                        console.log(this.state, 'Register');
-                                                    }} className="button is-primary">Register</div>
+                                                    <div className="columns">
+                                                        <div className="column">
+                                                            <div className="field">
+                                                                <div className="control">
+                                                                    <div className="select is-info">
+                                                                        <select>
+                                                                            <option default value="">Select Blood Group</option>
+                                                                            <option value="A">A</option>
+                                                                            <option value="B">B</option>
+                                                                            <option value="O">O</option>
+                                                                            <option value="AB">AB</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="column">
+                                                            <div className="field">
+                                                                <div className="control">
+                                                                    <div className="select is-info">
+                                                                        <select>
+                                                                            <option default value="">Select RH Factor</option>
+                                                                            <option value="+ve">+ve</option>
+                                                                            <option value="-ve">-ve</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="column">
+                                                            <div className="field">
+                                                                <div className="control">
+                                                                    <input value={this.state.dob} className="input" type="date" placeholder="Bate Of Birth" onChange={(e) => {
+                                                                        this.setState({ dob: e.target.value })
+                                                                    }}/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="columns">
+                                                        <div className="column">
+                                                            <div className="field">
+                                                                <div className="control">
+                                                                    <input value={this.state.password} className="input" type="password" placeholder="Password" onChange={(e) => {
+                                                                        this.setState({ password: e.target.value })
+                                                                    }}/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="column">
+                                                            <div className="field">
+                                                                <div className="control">
+                                                                    <input value={this.state.repassword} className="input" type="password" placeholder="Password" onChange={(e) => {
+                                                                        this.setState({ repassword: e.target.value })
+                                                                    }}/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <footer className="card-footer">
-                                                <a href="#" className="card-footer-item">Login</a>
+                                                <a onClick={() => {
+                                                    this.handleRegister();
+                                                }} href="#" className="card-footer-item">Register</a>
                                             </footer>
                                         </div>
                                     </div>

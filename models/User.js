@@ -20,7 +20,7 @@ const RhFactor = Object.freeze({
 });
 
 const UserTypes = Object.freeze({
-    DOC: 'Doctor',
+    DOC: 'Admin',
     REC: 'Receiver',
     DON: 'Donar',
 });
