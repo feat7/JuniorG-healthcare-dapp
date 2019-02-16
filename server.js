@@ -11,7 +11,7 @@ app.prepare().then(() => {
     const port = 8000 || process.env.PORT;
     const server = express();
     const Web3 = require('web3');
-    const truffle_connect = require('./connection/app.js');
+    const truffle_connect = require('./ethereum/connection/app.js');
     const bodyParser = require('body-parser');
     server.use(bodyParser.json());
 
@@ -19,13 +19,8 @@ app.prepare().then(() => {
         return handle(req, res)
     });
 
-//  var dagger = new Dagger("mqtts://kovan.dagger.matic.network"); // dagger server
-
-
     server.listen(port, () => {
-
-        // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-        truffle_connect.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+        truffle_connect.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/34db7aa51a29454db3a3b3b68abd92ca"));
 
         console.log("Express Listening at http://localhost:" + port);
 
