@@ -8,10 +8,14 @@ clientPersist.setDriver(clientPersist.SESSIONSTORAGE);
 // CRUD Utility
 
 export const addHospital = (hospitalDetails) => {
-    return axios.post(`${apiServer}/api/hospital`, { data: hospitalDetails }).then(response => response).catch(e => {
-        clientPersist.setItem('errorMessage', get(["data", "message"])(e.response)).then(() => console.log('--saved--'));
+    return clientPersist.getItem("authToken").then(authToken => {
+        if (authToken !== null) 
+        return axios.post(`${apiServer}/api/hospital`, { data: hospitalDetails }, { headers: { Authorization: `Bearer ${authToken}` } }).then(response => response).catch(e => {
+            clientPersist.setItem('errorMessage', get(["data", "message"])(e.response)).then(() => console.log('--saved--'));
+            return false;
+        });
         return false;
-    });
+      });
 };
 
 export const getHospital = (id) => {

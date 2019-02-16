@@ -1,4 +1,5 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react'
 import Header from '../components/header';
 import Footer from '../components/footer';
 
@@ -10,6 +11,7 @@ export default class Dashboard extends React.Component {
     };
 
     render() {
+        console.log(this.props.store);
         return (
             <React.Fragment>
                 <Header/>
