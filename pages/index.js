@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Head from 'next/head';
 import app from '../ethereum/connection/app';
 import Header from '../components/header';
 import Navbar from '../components/navbar';
