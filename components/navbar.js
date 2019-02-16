@@ -20,11 +20,11 @@ export default class Navbar extends Component{
                             <div className="navbar-end">
                                 <div className="tabs is-right">
                                     <ul className="navbar-menu-new">
-                                        <li className="is-active"><a>Home</a></li>
+                                        <li className="is-active"><a href="/">Home</a></li>
                                         <li><a href="">Features</a></li>
                                         <li><a href="">Terms and Conditions</a></li>
                                         <li><a href="">Privacy Policy</a></li>
-                                        <li><a href="">Login/Singup</a></li>
+                                        <li><a href="/auth">Login/Singup</a></li>
                                     </ul>
                                 </div>
                             </div>

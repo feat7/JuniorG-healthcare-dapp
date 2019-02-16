@@ -23,7 +23,7 @@ const infuraKey = "34db7aa51a29454db3a3b3b68abd92ca";
 
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
-// Deployed address 0xE4714548c4A6089368E7477B6691a2264D0b4a31
+// Deployed address 0x46283B7AC41939e73DDB63030BC5fdD2fDB24E33
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
