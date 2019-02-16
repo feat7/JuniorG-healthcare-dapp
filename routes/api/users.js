@@ -80,4 +80,30 @@ router.get("/current", auth.required, (req, res, next) => {
   });
 });
 
+
+// Users for verification
+router.get('/to-verify-donar', auth.required, (req, res, next) => {
+    return User.find({ userType: 'Donar' }).then(results => {
+      return res.json(results);
+    });
+});
+
+router.get('/to-verify-donar/:id/verify', auth.required, (req, res, next) => {
+  return User.findOneAndUpdate({ _id: req.params.id, userType: 'Donar' }, {$set:{status: true}}).then(results => {
+    return res.json(results);
+  });
+});
+
+router.get('/to-verify-receiver', auth.required, (req, res, next) => {
+  return User.find({ userType: 'Receiver' }).then(results => {
+    return res.json(results);
+  });
+});
+
+router.get('/to-verify-receiver/:id/verify', auth.required, (req, res, next) => {
+  return User.findOneAndUpdate({ _id: req.params.id, userType: 'Receiver' }, {$set:{status: true}}).then(results => {
+    return res.json(results);
+  });
+});
+
 module.exports = router;
