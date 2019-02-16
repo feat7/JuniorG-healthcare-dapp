@@ -5,3 +5,4 @@ ethereum/.secret
 \.idea/
 
 \.next/
+_templates/
