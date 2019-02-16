@@ -1,0 +1,26 @@
+{
+  "name": "juniorg-healthcare-dapp",
+  "version": "1.0.0",
+  "description": "JuniorG-healthcare-dapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feat7/JuniorG-healthcare-dapp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/feat7/JuniorG-healthcare-dapp/issues"
+  },
+  "homepage": "https://github.com/feat7/JuniorG-healthcare-dapp#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "next": "^8.0.1",
+    "next-routes": "^1.4.2",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
+  }
+}

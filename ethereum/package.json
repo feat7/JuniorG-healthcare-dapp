@@ -1,0 +1,20 @@
+{
+  "name": "dorgan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^4.0.25",
+    "truffle-contract": "^4.0.5",
+    "truffle-hdwallet-provider": "^1.0.4",
+    "web3": "^1.0.0-beta.46"
+  }
+}
