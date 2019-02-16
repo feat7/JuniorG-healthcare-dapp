@@ -20,10 +20,8 @@ export default class Register extends React.Component {
 
     handleLogin(){
         let data = {
-            "user": {
-                "email": this.state.email,
-                "password": this.state.password
-            }
+            "email": this.state.email,
+            "password": this.state.password
         };
         login(data).then(function(response){
             console.log(response);

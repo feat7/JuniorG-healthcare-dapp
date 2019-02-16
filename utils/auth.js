@@ -6,7 +6,7 @@ export const login = (userDetails, store) => {
   const { user } = store;
   return axios
     .post(`${apiServer}/api/users/login`, {
-      userDetails
+      user: userDetails
     })
     .then(response =>
       runInAction(() => {
