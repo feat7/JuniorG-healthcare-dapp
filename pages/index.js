@@ -4,8 +4,6 @@ import app from '../ethereum/connection/app';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
-import '../static/main.scss';
-
 export default class Main extends Component {
     async componentDidMount() {
         await app.getAdmin().then(r => console.log(r));

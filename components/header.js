@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
+import '../static/main.scss';
 export default class Header extends React.Component {
     render() {
         return (
