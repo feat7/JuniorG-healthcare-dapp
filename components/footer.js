@@ -5,7 +5,7 @@ export default class Footer extends React.Component {
         return (
             <React.Fragment>
                 <footer className="space--sm footer-1 text-center-xs">
-
+                    Footer
                 </footer>
             </React.Fragment>
         );
