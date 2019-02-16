@@ -4,6 +4,8 @@ import app from '../ethereum/connection/app';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
+import '../static/main.scss';
+
 export default class Main extends Component {
     async componentDidMount() {
         await app.getAdmin().then(r => console.log(r));
@@ -16,7 +18,7 @@ export default class Main extends Component {
                 <body>
                     <section className="section">
                         <div className="container">
-                            <h1 className="title">
+                            <h1 className="title has-text-primary">
                                 Hello World
                             </h1>
                             <p className="subtitle">

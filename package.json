@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/feat7/JuniorG-healthcare-dapp#readme",
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
@@ -28,6 +29,7 @@
     "mongoose-unique-validator": "^2.0.2",
     "next": "^8.0.1",
     "next-routes": "^1.4.2",
+    "node-sass": "^4.11.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "web3": "^1.0.0-beta.46"
