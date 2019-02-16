@@ -20,8 +20,12 @@
   },
   "homepage": "https://github.com/feat7/JuniorG-healthcare-dapp#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.4.13",
+    "mongoose-unique-validator": "^2.0.2",
     "next": "^8.0.1",
     "next-routes": "^1.4.2",
     "react": "^16.8.2",
