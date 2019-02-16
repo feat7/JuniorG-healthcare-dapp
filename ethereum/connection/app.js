@@ -7,7 +7,10 @@ const ethers = require('ethers');
 let web3Provider = ethers.getDefaultProvider('ropsten');
 let contractAddress = "0x46283B7AC41939e73DDB63030BC5fdD2fDB24E33";
 
-var dOrgan =  new ethers.Contract(contractAddress, dorgan_artifact['abi'], web3Provider);
+let privateKey = '0x31b52c32c3aa048dde03def434300b90f4a39f4f97ac3ea0bf8619ce4a6df8e1';
+let wallet = new ethers.Wallet(privateKey, web3Provider);
+
+var dOrgan =  new ethers.Contract(contractAddress, dorgan_artifact['abi'], wallet);
 
 module.exports = {
     getAdmin: async function() {
@@ -27,8 +30,8 @@ module.exports = {
             });
     },
 
-    addReciever: async function(address) {
-        return dOrgan.addReciever(address,{from: web3.eth.defaultAccount})
+    addReciever: async function(address,priority) {
+        return dOrgan.addReciever(address,priority)
             .then(function() {
                 return "sucess";
             }).catch(function(e) {
