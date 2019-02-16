@@ -3,3 +3,5 @@ ethereum/node_modules/
 
 ethereum/.secret
 \.idea/
+
+\.next/
