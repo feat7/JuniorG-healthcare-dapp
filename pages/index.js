@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import app from '../ethereum/connection/app';
+import Header from '../components/header';
 
 export default class Main extends Component {
     async componentDidMount() {
@@ -21,6 +22,7 @@ export default class Main extends Component {
             <link href="./static/css/theme.css" rel="stylesheet" type="text/css" media="all" />
             <link href="./static/css/custom.css" rel="stylesheet" type="text/css" media="all" />
         </Head>
+        <Header/>
         <div className="main-container">
             <section className="cover space--lg unpad--bottom bg--secondary switchable text-center">
                 <div className="container">
