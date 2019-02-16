@@ -7,7 +7,7 @@ export default class Header extends React.Component {
         return (
             <React.Fragment>
                 <Head>
-                    <title>My styled page</title>
+                    <title>Blockchain Dapp</title>
                     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
                 </Head>
             </React.Fragment>
