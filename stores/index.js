@@ -1,6 +1,7 @@
-import UIStore from "./ui";
 import { create } from "mobx-persist";
 import clientPersist from "client-persist";
+import UIStore from "./ui";
+import UserStore from "./user";
 
 class Store {
   constructor() {

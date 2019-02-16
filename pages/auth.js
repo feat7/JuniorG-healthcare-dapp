@@ -1,10 +1,12 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react'; 
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
 import {login, register} from '../utils/auth';
 
-
+@inject('store')
+@observer
 export default class Register extends React.Component {
     state = {
         fullName: '',
@@ -45,20 +47,17 @@ export default class Register extends React.Component {
 
     handleRegister(){
         let data = {
-            "user": {
-                "email": this.state.email,
-                "password": this.state.password,
-                "repassword": this.state.repassword,
-                "fullName": this.state.fullName,
-                "dob": this.state.dob,
-                "bloodGroup": this.state.bloodGroup,
-                "rhFactor": this.state.rhFactor,
-                "place": this.state.place,
-                "userType": this.state.userType,
-            }
+            "email": this.state.email,
+            "password": this.state.password,
+            "fullName": this.state.fullName,
+            "dob": this.state.dob,
+            "bloodGroup": this.state.bloodGroup,
+            "rhFactor": this.state.rhFactor,
+            "place": this.state.place,
+            "userType": this.state.userType,
         };
 
-        register(data).then(function(response){
+        register(data, this.props.store).then(function(response){
             console.log(response);
         });
     }
@@ -145,7 +144,7 @@ export default class Register extends React.Component {
                                                             <div className="field">
                                                                 <div className="control">
                                                                     <div className="select is-info">
-                                                                        <select>
+                                                                        <select onChange={e => {this.setState({userType: e.target.value})}} value={this.state.userType}>
                                                                             <option default value="">User Type</option>
                                                                             <option value="Donor">Donor</option>
                                                                             <option value="Receiver">Receiver</option>
@@ -160,12 +159,12 @@ export default class Register extends React.Component {
                                                             <div className="field">
                                                                 <div className="control">
                                                                     <div className="select is-info">
-                                                                        <select>
+                                                                        <select onChange={e => {this.setState({bloodGroup: e.target.value})}} value={this.state.bloodGroup}>
                                                                             <option default value="">Select Blood Group</option>
-                                                                            <option value="A">A</option>
-                                                                            <option value="B">B</option>
-                                                                            <option value="O">O</option>
-                                                                            <option value="AB">AB</option>
+                                                                            <option value="a">A</option>
+                                                                            <option value="b">B</option>
+                                                                            <option value="o">O</option>
+                                                                            <option value="ab">AB</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -175,7 +174,7 @@ export default class Register extends React.Component {
                                                             <div className="field">
                                                                 <div className="control">
                                                                     <div className="select is-info">
-                                                                        <select>
+                                                                        <select onChange={e => {this.setState({rhFactor: e.target.value})}} value={this.state.rhFactor}>
                                                                             <option default value="">Select RH Factor</option>
                                                                             <option value="+ve">+ve</option>
                                                                             <option value="-ve">-ve</option>
@@ -200,15 +199,6 @@ export default class Register extends React.Component {
                                                                 <div className="control">
                                                                     <input value={this.state.password} className="input" type="password" placeholder="Password" onChange={(e) => {
                                                                         this.setState({ password: e.target.value })
-                                                                    }}/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="column">
-                                                            <div className="field">
-                                                                <div className="control">
-                                                                    <input value={this.state.repassword} className="input" type="password" placeholder="Password" onChange={(e) => {
-                                                                        this.setState({ repassword: e.target.value })
                                                                     }}/>
                                                                 </div>
                                                             </div>
