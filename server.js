@@ -4,7 +4,8 @@ const next = require('next');
 const app = next({
     dev: process.env.NODE_ENV !== 'production'
 });
-const routes = require('./routes');
+const routes = require('./nextRoutes');
+const expressRoutes = require('./routes');
 const handle = routes.getRequestHandler(app);
 
 
@@ -18,6 +19,8 @@ app.prepare().then(() => {
     const truffle_connect = require('./ethereum/connection/app.js');
     const bodyParser = require('body-parser');
     server.use(bodyParser.json());
+
+    server.use('/server', expressRoutes); // Express Routes
 
     server.get('*', (req, res) => {
         return handle(req, res)
