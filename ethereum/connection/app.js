@@ -5,7 +5,7 @@ const dorgan_artifact = require('../build/contracts/dOrgan.json');
 const ethers = require('ethers');
 
 let web3Provider = ethers.getDefaultProvider('ropsten');
-let contractAddress = "0xE4714548c4A6089368E7477B6691a2264D0b4a31";
+let contractAddress = "0x46283B7AC41939e73DDB63030BC5fdD2fDB24E33";
 
 var dOrgan =  new ethers.Contract(contractAddress, dorgan_artifact['abi'], web3Provider);
 
@@ -67,10 +67,42 @@ module.exports = {
                 return e;
             });
     },
-    removeRecieverFromWaitlistt: async function(address) {
+    removeRecieverFromWaitlist: async function(address) {
         return dOrgan.removeRecieverFromWaitlist(address,{from: web3.eth.defaultAccount})
             .then(function() {
                 return "success";
+            }).catch(function(e) {
+                return e;
+            });
+    },
+    getPriority: async function() {
+        return dOrgan.getPriority(address,{from: web3.eth.defaultAccount})
+            .then(function(res) {
+                return res;
+            }).catch(function(e) {
+                return e;
+            });
+    },
+    changePriority: async function(address,priority) {
+        return dOrgan.changePriority(address,priority,{from: web3.eth.defaultAccount})
+            .then(function() {
+                return "success";
+            }).catch(function(e) {
+                return e;
+            });
+    },
+    verifyRecieverByAdmin: async function(address) {
+        return dOrgan.verifyRecieverByAdmin(address,{from: web3.eth.defaultAccount})
+            .then(function() {
+                return "success";
+            }).catch(function(e) {
+                return e;
+            });
+    },
+    getVerificationRecieverByAdmin: async function(address) {
+        return dOrgan.getVerificationRecieverByAdmin(address,{from: web3.eth.defaultAccount})
+            .then(function(res) {
+                return res;
             }).catch(function(e) {
                 return e;
             });
@@ -118,6 +150,22 @@ module.exports = {
     },
     removeLiveTransplantApproval: async function(address) {
         return dOrgan.removeLiveTransplantApproval(address,{from: web3.eth.defaultAccount})
+            .then(function() {
+                return "success";
+            }).catch(function(e) {
+                return e;
+            });
+    },
+    getVerificationLiveDonorByAdmin: async function(address) {
+        return dOrgan.getVerificationDeadLiveByAdmin(address,{from: web3.eth.defaultAccount})
+            .then(function(res) {
+                return res;
+            }).catch(function(e) {
+                return e;
+            });
+    },
+    verifyLiveDonorByAdmin: async function(address) {
+        return dOrgan.verifyLiveDonorByAdmin(address,{from: web3.eth.defaultAccount})
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -173,6 +221,31 @@ module.exports = {
                 return e;
             });
     },
+    getKidnies: async function(address) {
+        return dOrgan.getKidnies(address,{from: web3.eth.defaultAccount})
+            .then(function(res) {
+                return res;
+            }).catch(function(e) {
+                return e;
+            });
+    },
+    getVerificationDeadDonorByAdmin: async function(address) {
+        return dOrgan.getVerificationDeadDonorByAdmin(address,{from: web3.eth.defaultAccount})
+            .then(function(res) {
+                return res;
+            }).catch(function(e) {
+                return e;
+            });
+    },
+    verifyDeadDonorByAdmin: async function(address) {
+        return dOrgan.verifyDeadDonorByAdmin(address,{from: web3.eth.defaultAccount})
+            .then(function() {
+                return "success";
+            }).catch(function(e) {
+                return e;
+            });
+    },
+
     transplantLiveDonor: async function(recAddr,donorAddr) {
         return dOrgan.transplantLiveDonor(recAddr,donorAddr,{from: web3.eth.defaultAccount})
             .then(function() {
