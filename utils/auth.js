@@ -6,7 +6,7 @@ import { get } from '.';
 clientPersist.setDriver(clientPersist.SESSIONSTORAGE);
 
 export const register = async (userDetails) => {
-    return axios.post(`${apiServer}/api/users`, { user: userDetails }).then(response => true).catch(e => {
+    return axios.post(`${apiServer}/api/users`, { user: userDetails }).then(response => response).catch(e => {
         clientPersist.setItem('errorMessage', get(["data", "message"])(e.response)).then(() => console.log('--saved--'));
         return false;
     });
