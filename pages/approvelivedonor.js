@@ -1,19 +1,24 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react'
 import Header from '../components/header';
 import Footer from '../components/footer';
 import app from '../ethereum/connection/app';
 
-export default class DashboardLiveDonor extends React.Component {
+export default class LiveDonorApproval extends React.Component {
+
     state = {
         ethAddress: '',
     };
     onSubmit = () => {
-        app.addLiveDonor(this.state.ethAddress).then(r => console.log(r));
+        app.approveLiveTransplant(this.state.ethAddress).then(r => console.log(r));
     };
+
     render() {
-        return(
+        console.log(this.props.store);
+        return (
             <React.Fragment>
                 <Header/>
+                <h2>Approve for Transplant</h2>
                 <div className="hero">
                     <div className="hero-body">
                         <div className="container">
@@ -24,7 +29,7 @@ export default class DashboardLiveDonor extends React.Component {
                                     }}/>
                                 </div>
                             </div>
-                            <button className="button is-primary" onClick={this.onSubmit}>Register for Kidney Donation</button>
+                            <button className="button is-primary" onClick={this.onSubmit}>Approve for Transplant</button>
                         </div>
                     </div>
                 </div>
