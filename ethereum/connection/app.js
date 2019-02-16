@@ -14,7 +14,7 @@ var dOrgan =  new ethers.Contract(contractAddress, dorgan_artifact['abi'], walle
 
 module.exports = {
     getAdmin: async function() {
-        return dOrgan.getAdmin({from: web3.eth.defaultAccount})
+        return dOrgan.getAdmin()
                 .then(function(result) {
                     return result;
                 }).catch(function(e) {
@@ -22,7 +22,7 @@ module.exports = {
                 });
     },
     setAdmin: async function(address) {
-        return dOrgan.setAdmin(address,{from: web3.eth.defaultAccount})
+        return dOrgan.setAdmin(address)
             .then(function() {
                 return "sucess";
             }).catch(function(e) {
@@ -39,7 +39,7 @@ module.exports = {
             });
     },
     getRecievers: async function() {
-        return dOrgan.getRecievers({from: web3.eth.defaultAccount})
+        return dOrgan.getRecievers()
             .then(function(res) {
                 return res;
             }).catch(function(e) {
@@ -47,7 +47,7 @@ module.exports = {
             });
     },
     updateReciever: async function(oldAddr,newAddr) {
-        return dOrgan.updateReciever(oldAddr,newAddr,{from: web3.eth.defaultAccount})
+        return dOrgan.updateReciever(oldAddr,newAddr)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -55,7 +55,7 @@ module.exports = {
             });
     },
     getTransplanted: async function(address) {
-        return dOrgan.getTransplanted(address,{from: web3.eth.defaultAccount})
+        return dOrgan.getTransplanted(address)
             .then(function(res) {
                 return res;
             }).catch(function(e) {
@@ -63,7 +63,7 @@ module.exports = {
             });
     },
     addRecieverToWaitlist: async function(address) {
-        return dOrgan.addRecieverToWaitlist(address,{from: web3.eth.defaultAccount})
+        return dOrgan.addRecieverToWaitlist(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -71,7 +71,7 @@ module.exports = {
             });
     },
     removeRecieverFromWaitlist: async function(address) {
-        return dOrgan.removeRecieverFromWaitlist(address,{from: web3.eth.defaultAccount})
+        return dOrgan.removeRecieverFromWaitlist(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -79,7 +79,7 @@ module.exports = {
             });
     },
     getPriority: async function() {
-        return dOrgan.getPriority(address,{from: web3.eth.defaultAccount})
+        return dOrgan.getPriority()
             .then(function(res) {
                 return res;
             }).catch(function(e) {
@@ -87,7 +87,7 @@ module.exports = {
             });
     },
     changePriority: async function(address,priority) {
-        return dOrgan.changePriority(address,priority,{from: web3.eth.defaultAccount})
+        return dOrgan.changePriority(address,priority)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -95,7 +95,7 @@ module.exports = {
             });
     },
     verifyRecieverByAdmin: async function(address) {
-        return dOrgan.verifyRecieverByAdmin(address,{from: web3.eth.defaultAccount})
+        return dOrgan.verifyRecieverByAdmin(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -103,7 +103,7 @@ module.exports = {
             });
     },
     getVerificationRecieverByAdmin: async function(address) {
-        return dOrgan.getVerificationRecieverByAdmin(address,{from: web3.eth.defaultAccount})
+        return dOrgan.getVerificationRecieverByAdmin(address)
             .then(function(res) {
                 return res;
             }).catch(function(e) {
@@ -112,7 +112,7 @@ module.exports = {
     },
 
     addLiveDonor: async function(address) {
-        return dOrgan.addLiveDonor(address,{from: web3.eth.defaultAccount})
+        return dOrgan.addLiveDonor(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -120,15 +120,15 @@ module.exports = {
             });
     },
     getLiveDonors: async function() {
-        return dOrgan.getLiveDonors({from: web3.eth.defaultAccount})
-            .then(function() {
-                return "success";
+        return dOrgan.getLiveDonors()
+            .then(function(res) {
+                return res;
             }).catch(function(e) {
                 return e;
             });
     },
     removeLiveDonor: async function(address) {
-        return dOrgan.removeLiveDonor(address,{from: web3.eth.defaultAccount})
+        return dOrgan.removeLiveDonor(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -136,7 +136,7 @@ module.exports = {
             });
     },
     updateLiveDonor: async function(oldAddr,newAddr) {
-        return dOrgan.updateLiveDonor(oldAddr,newAddr,{from: web3.eth.defaultAccount})
+        return dOrgan.updateLiveDonor(oldAddr,newAddr)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -144,7 +144,7 @@ module.exports = {
             });
     },
     approveLiveTransplant: async function(address) {
-        return dOrgan.approveLiveTransplant(address,{from: web3.eth.defaultAccount})
+        return dOrgan.approveLiveTransplant(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -152,7 +152,7 @@ module.exports = {
             });
     },
     removeLiveTransplantApproval: async function(address) {
-        return dOrgan.removeLiveTransplantApproval(address,{from: web3.eth.defaultAccount})
+        return dOrgan.removeLiveTransplantApproval(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -160,7 +160,7 @@ module.exports = {
             });
     },
     getVerificationLiveDonorByAdmin: async function(address) {
-        return dOrgan.getVerificationDeadLiveByAdmin(address,{from: web3.eth.defaultAccount})
+        return dOrgan.getVerificationDeadLiveByAdmin(address)
             .then(function(res) {
                 return res;
             }).catch(function(e) {
@@ -168,7 +168,7 @@ module.exports = {
             });
     },
     verifyLiveDonorByAdmin: async function(address) {
-        return dOrgan.verifyLiveDonorByAdmin(address,{from: web3.eth.defaultAccount})
+        return dOrgan.verifyLiveDonorByAdmin(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -177,7 +177,7 @@ module.exports = {
     },
 
     addDeadDonor: async function(address) {
-        return dOrgan.addDeadDonor(address,{from: web3.eth.defaultAccount})
+        return dOrgan.addDeadDonor(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -185,7 +185,7 @@ module.exports = {
             });
     },
     getDeadDonors: async function() {
-        return dOrgan.getDeadDonors({from: web3.eth.defaultAccount})
+        return dOrgan.getDeadDonors()
             .then(function(res) {
                 return res;
             }).catch(function(e) {
@@ -193,7 +193,7 @@ module.exports = {
             });
     },
     removeDeadDonor: async function(address) {
-        return dOrgan.removeDeadDonor(address,{from: web3.eth.defaultAccount})
+        return dOrgan.removeDeadDonor(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -201,7 +201,7 @@ module.exports = {
             });
     },
     updateDeadDonor: async function(oldAddr,newAddr) {
-        return dOrgan.updateDeadDonor(oldAddr,newAddr,{from: web3.eth.defaultAccount})
+        return dOrgan.updateDeadDonor(oldAddr,newAddr)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -209,7 +209,7 @@ module.exports = {
             });
     },
     approveDeadTransplant: async function(address) {
-        return dOrgan.approveDeadTransplant(address,{from: web3.eth.defaultAccount})
+        return dOrgan.approveDeadTransplant(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -217,7 +217,7 @@ module.exports = {
             });
     },
     removeDeadTransplantApproval: async function(address) {
-        return dOrgan.removeDeadTransplantApproval(address,{from: web3.eth.defaultAccount})
+        return dOrgan.removeDeadTransplantApproval(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -225,7 +225,7 @@ module.exports = {
             });
     },
     getKidnies: async function(address) {
-        return dOrgan.getKidnies(address,{from: web3.eth.defaultAccount})
+        return dOrgan.getKidnies(address)
             .then(function(res) {
                 return res;
             }).catch(function(e) {
@@ -233,7 +233,7 @@ module.exports = {
             });
     },
     getVerificationDeadDonorByAdmin: async function(address) {
-        return dOrgan.getVerificationDeadDonorByAdmin(address,{from: web3.eth.defaultAccount})
+        return dOrgan.getVerificationDeadDonorByAdmin(address)
             .then(function(res) {
                 return res;
             }).catch(function(e) {
@@ -241,7 +241,7 @@ module.exports = {
             });
     },
     verifyDeadDonorByAdmin: async function(address) {
-        return dOrgan.verifyDeadDonorByAdmin(address,{from: web3.eth.defaultAccount})
+        return dOrgan.verifyDeadDonorByAdmin(address)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -250,7 +250,7 @@ module.exports = {
     },
 
     transplantLiveDonor: async function(recAddr,donorAddr) {
-        return dOrgan.transplantLiveDonor(recAddr,donorAddr,{from: web3.eth.defaultAccount})
+        return dOrgan.transplantLiveDonor(recAddr,donorAddr)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -258,7 +258,7 @@ module.exports = {
             });
     },
     transplantDeadDonor: async function(recAddr,donorAddr) {
-        return dOrgan.transplantDeadDonor(recAddr,donorAddr,{from: web3.eth.defaultAccount})
+        return dOrgan.transplantDeadDonor(recAddr,donorAddr)
             .then(function() {
                 return "success";
             }).catch(function(e) {
@@ -266,7 +266,7 @@ module.exports = {
             });
     },
     getTransplant: async function(recAddr) {
-        return dOrgan.getTransplant(recAddr,{from: web3.eth.defaultAccount})
+        return dOrgan.getTransplant(recAddr)
             .then(function() {
                 return "success";
             }).catch(function(e) {
