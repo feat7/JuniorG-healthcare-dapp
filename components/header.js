@@ -1,8 +1,21 @@
 import React from 'react';
+import Head from 'next/head';
 
 export default class Header extends React.Component {
     render() {
         return (
+            <React.Fragment>
+            <Head>
+                <title>My styled page</title>
+                <link href="./static/css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
+                <link href="./static/css/socicon.css" rel="stylesheet" type="text/css" media="all" />
+                <link href="./static/css/iconsmind.css" rel="stylesheet" type="text/css" media="all" />
+                <link href="./static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+                <link href="./static/css/flickity.css" rel="stylesheet" type="text/css" media="all" />
+                <link href="./static/css/stack-interface.css" rel="stylesheet" type="text/css" media="all" />
+                <link href="./static/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+                <link href="./static/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+            </Head>
             <div className="nav-container">
             <div>
                 <div className="bar bar--sm visible-xs">
@@ -98,6 +111,7 @@ export default class Header extends React.Component {
                 </nav>
             </div>
         </div>
+        </React.Fragment>
         
         );
     }

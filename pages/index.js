@@ -12,17 +12,6 @@ export default class Main extends Component {
     render() {
         return (
     <React.Fragment>
-        <Head>
-            <title>My styled page</title>
-            <link href="./static/css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
-            <link href="./static/css/socicon.css" rel="stylesheet" type="text/css" media="all" />
-            <link href="./static/css/iconsmind.css" rel="stylesheet" type="text/css" media="all" />
-            <link href="./static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-            <link href="./static/css/flickity.css" rel="stylesheet" type="text/css" media="all" />
-            <link href="./static/css/stack-interface.css" rel="stylesheet" type="text/css" media="all" />
-            <link href="./static/css/theme.css" rel="stylesheet" type="text/css" media="all" />
-            <link href="./static/css/custom.css" rel="stylesheet" type="text/css" media="all" />
-        </Head>
         <Header/>
         <div className="main-container">
             <section className="cover space--lg unpad--bottom bg--secondary switchable text-center">
