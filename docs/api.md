@@ -1,8 +1,6 @@
-<!-- docs/_sidebar.md -->
+# API Documentation
 
-- [Home](/)
-- [API Docs](api)
-  <!-- api routes -->
+## Links {docsify-ignore}
   - [Patient](api/patient)
 
   - [Transaction](api/transaction)
