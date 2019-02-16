@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-import User from './User';
+//const User =require('./User');
 
 const PatientSchema = new Schema({
     user: {
-        type: Schema.Types.objectId,
+        type: Schema.ObjectId,
         ref: 'User',
         index: true,
     },

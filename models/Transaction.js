@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-import User from './User';
-import Hospital from './Hospital';
 
 const DonationType = Object.freeze({
     LIV: 'Live',
@@ -17,27 +15,24 @@ const Organs = Object.freeze({
 
 const TransactionSchema = new Schema({
     donor: {
-        type: Schema.Types.ObjectId,
+        type: Schema.ObjectId,
         ref: 'User',
-        index: true,
     },
     receiver: {
-        type: Schema.Types.ObjectId,
+        type: Schema.ObjectId,
         ref: 'User',
-        index: true,
     },
     transactionType: {
         type: String,
-        enum: DonationType,
+        enum: Object.values(DonationType),
     },
     hospital: {
-        type: Schema.Types.ObjectId,
+        type: Schema.ObjectId,
         ref: 'Hospital',
-        index: true,
     },
     organ: {
         type: String,
-        enum: Organs,
+        enum: Object.values(Organs),
     },
     details: String,
     isLive: Boolean,

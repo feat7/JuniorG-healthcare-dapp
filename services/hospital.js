@@ -1,6 +1,5 @@
 const Hospital = require("../models/Hospital");
 
-
 /**
 *   Service | GET | All the data
 */

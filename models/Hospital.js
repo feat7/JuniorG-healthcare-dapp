@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-import User from './User';
+//const User = require('./User');
 
 // Locality for GeoLocation
 const HospitalSchema = new Schema({
@@ -11,7 +11,7 @@ const HospitalSchema = new Schema({
     pin: Number,
     location: String,
     admin: {
-        type: Schema.Types.ObjectId,
+        type: Schema.ObjectId,
         ref: 'User',
         index: true,
     },
