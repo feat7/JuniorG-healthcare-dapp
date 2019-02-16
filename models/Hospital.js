@@ -12,7 +12,8 @@ const HospitalSchema = new Schema({
     location: String,
     admin: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        index: true,
     },
 },{
     createdAt: 'created_at',
@@ -21,4 +22,4 @@ const HospitalSchema = new Schema({
 
 const Hospital = mongoose.model('Hospital', HospitalSchema);
 
-export default Hospital;
+module.exports = Hospital;

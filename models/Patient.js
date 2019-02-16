@@ -6,9 +6,10 @@ const PatientSchema = new Schema({
     user: {
         type: Schema.Types.objectId,
         ref: 'User',
+        index: true,
     },
     details: {},
 });
 
 const Patient = mongoose.model('Patient', PatientSchema);
-export default Patient;
+module.exports = Patient;

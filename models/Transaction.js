@@ -19,10 +19,12 @@ const TransactionSchema = new Schema({
     donor: {
         type: Schema.Types.ObjectId,
         ref: 'User',
+        index: true,
     },
     receiver: {
         type: Schema.Types.ObjectId,
         ref: 'User',
+        index: true,
     },
     transactionType: {
         type: String,
@@ -31,6 +33,7 @@ const TransactionSchema = new Schema({
     hospital: {
         type: Schema.Types.ObjectId,
         ref: 'Hospital',
+        index: true,
     },
     organ: {
         type: String,
@@ -43,4 +46,4 @@ const TransactionSchema = new Schema({
 
 const Transaction = mongoose.model('Transaction', TransactionSchema);
 
-export default Transaction;
+module.exports = Transaction;
