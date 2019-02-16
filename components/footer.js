@@ -4,8 +4,8 @@ export default class Footer extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <footer class="footer">
-                    <div class="content has-text-centered">
+                <footer className="footer">
+                    <div className="content has-text-centered">
                         <p>
                         <strong>Dapp</strong> by <a href="https://github.com/feat7/JuniorG-healthcare-dapp">Team Junior G</a>. .
                         </p>
