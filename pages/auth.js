@@ -10,14 +10,25 @@ export default class Register extends React.Component {
     };
 
     handleLogin(){
-        fetch('/server/api/', {
-            method: 'post',
+        fetch('/server/api/users/login', {
+            method: 'POST',
             body: {
                 user: {
                     email: this.state.email,
                     password: this.state.password
                 }
+            },
+            headers: {
+                "Content-Type": "application/json"
             }
+        }).then(function(response) {
+            // response.status     //=> number 100–599
+            // response.statusText //=> String
+            // response.headers    //=> Headers
+            // response.url        //=> String
+            console.log(response);
+        }, function(error) {
+            console.log(error.message); //=> String
         });
     }
 
