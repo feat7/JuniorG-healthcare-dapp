@@ -19,6 +19,7 @@ const hydrate = create({
 });
 
 const p1 = hydrate("authToken", store.user);
+const p2 = hydrate("details", store.user);
 
 Promise.all([p1, p2]).then(() => {
   console.log("Hydration complete");
