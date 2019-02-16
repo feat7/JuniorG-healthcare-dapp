@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "eth-dagger": "0.0.4",
     "ethers": "^4.0.25",
     "truffle-contract": "^4.0.5",
     "truffle-hdwallet-provider": "^1.0.4",
