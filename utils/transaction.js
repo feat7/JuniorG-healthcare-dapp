@@ -1,36 +1,91 @@
-import axios from 'axios';
-import {apiServer} from '../config';
-import clientPersist from "client-persist";
-import { get } from '.';
+import axios from "axios";
+import { runInAction } from "mobx";
+import { apiServer } from "../config";
+import { get } from ".";
 
-clientPersist.setDriver(clientPersist.SESSIONSTORAGE);
-
-// CRUD Utility
-
-export const addTransaction = (transactionDetails) => {
-    return axios.post(`${apiServer}/api/transaction`, { data: transactionDetails }).then(response => response).catch(e => {
-        clientPersist.setItem('errorMessage', get(["data", "message"])(e.response)).then(() => console.log('--saved--'));
-        return false;
+export const getTransaction = store => {
+  const { user, ui } = store;
+  ui.isLoading = true;
+  return axios
+    .get(`${apiServer}/api/transaction`, { headers: { Authorization: `Bearer ${user.authToken}` } })
+    .then(response =>
+      runInAction(() => {
+        patient.fetchTransactionList = false;
+        patient.transactionList = response.data;
+        // ui.successMessage = "Fetched";
+        // ui.isSuccess = true;
+      })
+    )
+    .catch(e => {
+      patient.fetchTransactionList = false;
+      ui.errorMessage = get(["response", "data", "message"])(e) || e.message;
+      ui.isError = true;
+    })
+    .finally(() => {
+      ui.isLoading = false;
     });
 };
 
-export const getTransaction = (id) => {
-    return axios.get(`${apiServer}/api/transaction/${id}`).then(response => response).catch(e => {
-        clientPersist.setItem('errorMessage', get(["data", "message"])(e.response)).then(() => console.log('--saved--'));
-        return false;
+export const addTransaction = (store, params) => {
+  const { auth, ui } = store;
+  ui.isLoading = true;
+  axios
+    .post(`${apiServer}/api/transaction`, params, { headers: { Authorization: `Bearer ${user.authToken}` } })
+    .then(response =>
+      runInAction(() => {
+        Actions.ListClients();
+        ui.isLoading = false;
+        ui.successMessage = response.data.message;
+        ui.isSuccess = true;
+        getClient(store);
+      })
+    )
+    .catch(e => runInAction(() => {
+      ui.isLoading = false;
+      ui.errorMessage = get(["response", "data", "message"])(e) || e.message;
+      ui.isError = true;
+    }));
+};
+
+export const editTransaction = (store, params) => {
+  const { user, ui } = store;
+  ui.isLoading = true;
+  return axios
+    .put(`${apiServer}/api/transaction/update/${params.id}`, params, {
+      headers: { Authorization: `Bearer ${user.authToken}` }
+    })
+    .then(response =>
+      runInAction(() => {
+        ui.successMessage = "Edited";
+        ui.isSuccess = true;
+        getClient(store);
+      })
+    )
+    .catch(e => runInAction(() => {
+      ui.errorMessage = get(["response", "data", "message"])(e) || e.message;
+      ui.isError = true;
+    }))
+    .finally(() => {
+      ui.isLoading = false;
     });
 };
 
-export const updateTransaction = (id, transactionDetails) => {
-    return axios.put(`${apiServer}/api/transaction/update/${id}`, { data: transactionDetails }).then(response => response).catch(e => {
-        clientPersist.setItem('errorMessage', get(["data", "message"])(e.response)).then(() => console.log('--saved--'));
-        return false;
-    });
-};
-
-export const deleteTransaction = (id) => {
-    return axios.delete(`${apiServer}/api/transaction/${id}`).then(response => response).catch(e => {
-        clientPersist.setItem('errorMessage', get(["data", "message"])(e.response)).then(() => console.log('--saved--'));
-        return false;
-    });
+export const removeTransaction = (store, id) => {
+  const { auth, ui } = store;
+  ui.isLoading = true;
+  axios
+    .delete(`${apiServer}/api/transaction/${id}`, { headers: { Authorization: `Bearer ${user.authToken}` } })
+    .then(response =>
+      runInAction(() => {
+        ui.successMessage = "DELETED";
+        ui.isSuccess = true;
+        ui.isLoading = false;
+        getClient(store);
+      })
+    )
+    .catch(e => runInAction(() => {
+      ui.isError = true;
+      ui.errorMessage = get(["response", "data", "message"])(e) || e.message;
+      ui.isLoading = false;
+    }));
 };

@@ -1,40 +1,91 @@
-import axios from 'axios';
-import {apiServer} from '../config';
-import clientPersist from "client-persist";
-import { get } from '.';
+import axios from "axios";
+import { runInAction } from "mobx";
+import { apiServer } from "../config";
+import { get } from ".";
 
-clientPersist.setDriver(clientPersist.SESSIONSTORAGE);
-
-// CRUD Utility
-
-export const addHospital = (hospitalDetails) => {
-    return clientPersist.getItem("authToken").then(authToken => {
-        if (authToken !== null) 
-        return axios.post(`${apiServer}/api/hospital`, { data: hospitalDetails }, { headers: { Authorization: `Bearer ${authToken}` } }).then(response => response).catch(e => {
-            clientPersist.setItem('errorMessage', get(["data", "message"])(e.response)).then(() => console.log('--saved--'));
-            return false;
-        });
-        return false;
-      });
-};
-
-export const getHospital = (id) => {
-    return axios.get(`${apiServer}/api/hospital/${id}`).then(response => response).catch(e => {
-        clientPersist.setItem('errorMessage', get(["data", "message"])(e.response)).then(() => console.log('--saved--'));
-        return false;
+export const getHospital = store => {
+  const { user, ui } = store;
+  ui.isLoading = true;
+  return axios
+    .get(`${apiServer}/api/hospital`, { headers: { Authorization: `Bearer ${user.authToken}` } })
+    .then(response =>
+      runInAction(() => {
+        hospital.fetchHospitalList = false;
+        hospital.hospitalList = response.data;
+        // ui.successMessage = "Fetched";
+        // ui.isSuccess = true;
+      })
+    )
+    .catch(e => {
+      hospital.fetchHospitalList = false;
+      ui.errorMessage = get(["response", "data", "message"])(e) || e.message;
+      ui.isError = true;
+    })
+    .finally(() => {
+      ui.isLoading = false;
     });
 };
 
-export const updateHospital = (id, hospitalDetails) => {
-    return axios.put(`${apiServer}/api/hospital/update/${id}`, { data: hospitalDetails }).then(response => response).catch(e => {
-        clientPersist.setItem('errorMessage', get(["data", "message"])(e.response)).then(() => console.log('--saved--'));
-        return false;
+export const addHospital = (store, params) => {
+  const { auth, ui } = store;
+  ui.isLoading = true;
+  axios
+    .post(`${apiServer}/api/hospital`, params, { headers: { Authorization: `Bearer ${user.authToken}` } })
+    .then(response =>
+      runInAction(() => {
+        Actions.ListClients();
+        ui.isLoading = false;
+        ui.successMessage = response.data.message;
+        ui.isSuccess = true;
+        getClient(store);
+      })
+    )
+    .catch(e => runInAction(() => {
+      ui.isLoading = false;
+      ui.errorMessage = get(["response", "data", "message"])(e) || e.message;
+      ui.isError = true;
+    }));
+};
+
+export const editHospital = (store, params) => {
+  const { user, ui } = store;
+  ui.isLoading = true;
+  return axios
+    .put(`${apiServer}/api/hospital/update/${params.id}`, params, {
+      headers: { Authorization: `Bearer ${user.authToken}` }
+    })
+    .then(response =>
+      runInAction(() => {
+        ui.successMessage = "Edited";
+        ui.isSuccess = true;
+        getClient(store);
+      })
+    )
+    .catch(e => runInAction(() => {
+      ui.errorMessage = get(["response", "data", "message"])(e) || e.message;
+      ui.isError = true;
+    }))
+    .finally(() => {
+      ui.isLoading = false;
     });
 };
 
-export const deleteHospital = (id) => {
-    return axios.delete(`${apiServer}/api/hospital/${id}`).then(response => response).catch(e => {
-        clientPersist.setItem('errorMessage', get(["data", "message"])(e.response)).then(() => console.log('--saved--'));
-        return false;
-    });
+export const removeHospital = (store, id) => {
+  const { auth, ui } = store;
+  ui.isLoading = true;
+  axios
+    .delete(`${apiServer}/api/hospital/${id}`, { headers: { Authorization: `Bearer ${user.authToken}` } })
+    .then(response =>
+      runInAction(() => {
+        ui.successMessage = "DELETED";
+        ui.isSuccess = true;
+        ui.isLoading = false;
+        getClient(store);
+      })
+    )
+    .catch(e => runInAction(() => {
+      ui.isError = true;
+      ui.errorMessage = get(["response", "data", "message"])(e) || e.message;
+      ui.isLoading = false;
+    }));
 };
