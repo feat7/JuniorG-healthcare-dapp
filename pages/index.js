@@ -13,7 +13,7 @@ export default class Main extends Component {
         return (
             <React.Fragment>
                 <meta charSet="utf-8"/>
-                <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <Header/>
                 <body>
@@ -79,11 +79,12 @@ export default class Main extends Component {
 
                     <div className="hero-foot">
                         <div className="container">
-                            <div className="tabs is-centered">
-                                <ul>
-                                    <li><a>And this is the bottom</a></li>
-                                </ul>
-                            </div>
+                            <h1 className="title has-text-primary">
+                                Hello World
+                            </h1>
+                            <p className="subtitle">
+                                My first website with <strong>Bulma</strong>!
+                            </p>
                         </div>
                     </div>
                 </section>
