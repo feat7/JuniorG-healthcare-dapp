@@ -3,35 +3,58 @@ import React, { Component } from 'react';
 export default class Navbar extends Component{
     render(){
         return (
-            <div className="hero-head">
-                <nav className="navbar">
-                    <div className="container">
-                        <div className="navbar-brand">
-                            <a className="navbar-item" href="../">
-                                <img src="./static/images/logo.png" alt="Junior G" />
-                            </a>
-                            <span className="navbar-burger burger" data-target="navbarMenu">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </div>
-                        <div id="navbarMenu" className="navbar-menu">
-                            <div className="navbar-end">
-                                <div className="tabs is-right">
-                                    <ul className="navbar-menu-new">
-                                        <li className="is-active"><a href="/">Home</a></li>
-                                        <li><a href="">Features</a></li>
-                                        <li><a href="">Terms and Conditions</a></li>
-                                        <li><a href="">Privacy Policy</a></li>
-                                        <li><a href="/auth">Login/Singup</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+            <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <h1 class="navbar-item has-text-primary has-text-bold" href="/">
+                        Junior G
+                    </h1>
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                    <a class="navbar-item">
+                        Home
+                    </a>
+
+                    <a class="navbar-item">
+                        How this works?
+                    </a>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                        More
+                        </a>
+
+                        <div class="navbar-dropdown">
+                        <a href="https://github.com/feat7" class="navbar-item">
+                            About
+                        </a>
+                        <a href="https://github.com/feat7/JuniorG-healthcare-dapp" class="navbar-item">
+                            Github
+                        </a>
                         </div>
                     </div>
-                </nav>
-            </div>
+                    </div>
+
+                    <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                        <a href="/auth" class="button is-primary">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a href="/auth" class="button is-light">
+                            Log in
+                        </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </nav>
         );
     }
 }
