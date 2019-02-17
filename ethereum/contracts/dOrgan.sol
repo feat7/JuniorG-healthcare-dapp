@@ -5,7 +5,7 @@ pragma solidity >=0.4.26;
 contract dOrgan{
 
     // Events
-    event donorDead();
+    event donorDead(address);
 
     // Structs
     struct Reciever{
@@ -266,7 +266,7 @@ contract dOrgan{
 
     function approveDeadTransplant(address addr)public verifyDeadDonorExist(addr){
         deadDonors[addr].approve = true;
-        emit donorDead(); // ML Predictions Here
+        emit donorDead(addr); // ML Predictions Here
     }
 
     function removeDeadTransplantApproval(address addr)public verifyDeadDonorExist(addr) approveDeadDonor(addr){

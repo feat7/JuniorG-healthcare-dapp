@@ -5,13 +5,17 @@ import Navbar from '../components/navbar';
 import app from '../ethereum/connection/app';
 
 export default class Patients extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
     static async getInitialProps(){
         var tx = {};
-        const recievers = await app.getTransplants().then(r => {return r});
-        this.props.recievers.map((item) => {
+        const receivers = await app.getTransplants().then(r => {return r}) || [];
+        receivers.map((item) => {
             tx[item] = app.getTransplant(item).then(r => {return r});
         });
-        return { recievers, tx };
+        return { receivers: receivers, tx };
     }
 
     render() {
@@ -28,7 +32,8 @@ export default class Patients extends React.Component {
                                         <header className="timeline-header">
                                             <span className="tag is-medium is-primary">Start</span>
                                         </header>
-                                        {this.props.recievers.map((item, index) => {
+                                        <br />
+                                        {this.props.receivers.map((item, index) => {
                                             return(
                                                 <div className="timeline-item">
                                                     <div className="timeline-marker"></div>

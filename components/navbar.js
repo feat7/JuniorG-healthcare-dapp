@@ -66,6 +66,11 @@ export default class Navbar extends Component{
                         <a className="navbar-item" href="/patients">
                             Receivers
                         </a>
+
+                        <a className="navbar-item" href="/transplants">
+                            Transplants
+                        </a>
+
                         <div className="navbar-item has-dropdown is-hoverable">
                             <a className="navbar-link">
                                 More

@@ -16,41 +16,39 @@ export default class Main extends Component {
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <Header/>
-                <body>
-                    <Navbar/>
-                    <section className="hero is-fullheight is-default is-bold">
-                        <div className="hero-body">
-                            <div className="container has-text-centered">
-                                <div className="columns is-vcentered">
-                                    <div className="column is-5">
-                                        <figure className="image is-4by3">
-                                            <img src="./static/images/donate.svg" alt="Description" />
-                                        </figure>
-                                    </div>
-                                    <div className="column is-6 is-offset-1">
-                                        <h1 className="title is-2">
-                                            Junior G
-                                        </h1>
-                                        <h2 className="subtitle is-4">
-                                            Online transparent platform for managing and monitoring organ transplant
-                                        </h2>
-                                        <br/>
-                                            <p className="has-text-centered">
-                                                <a href="/auth" className="button is-medium is-info is-outlined">
-                                                    Need an Organ
-                                                </a>
-                                                &nbsp;&nbsp;&nbsp;
-                                                <a href="/auth" className="button is-medium is-info is-outlined">
-                                                    Donate an Organ
-                                                </a>
-                                            </p>
-                                    </div>
+                <Navbar/>
+                <section className="hero is-fullheight is-default is-bold">
+                    <div className="hero-body">
+                        <div className="container has-text-centered">
+                            <div className="columns is-vcentered">
+                                <div className="column is-5">
+                                    <figure className="image is-4by3">
+                                        <img src="./static/images/donate.svg" alt="Description" />
+                                    </figure>
+                                </div>
+                                <div className="column is-6 is-offset-1">
+                                    <h1 className="title is-2">
+                                        Junior G
+                                    </h1>
+                                    <h2 className="subtitle is-4">
+                                        Online transparent platform for managing and monitoring organ transplant
+                                    </h2>
+                                    <br/>
+                                        <p className="has-text-centered">
+                                            <a href="/auth" className="button is-medium is-info is-outlined">
+                                                Need an Organ
+                                            </a>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <a href="/auth" className="button is-medium is-info is-outlined">
+                                                Donate an Organ
+                                            </a>
+                                        </p>
                                 </div>
                             </div>
                         </div>
-                    </section>
-                    <Footer/>
-                </body>
+                    </div>
+                </section>
+                <Footer/>
             </React.Fragment>
         );
     }
