@@ -83,7 +83,7 @@ router.get("/current", auth.required, (req, res, next) => {
 
 // Users for verification
 router.get('/to-verify-donar', auth.required, (req, res, next) => {
-    return User.find({ userType: 'Donar' }).then(results => {
+    return User.find({ userType: 'Donar', status: false }).then(results => {
       return res.json(results);
     });
 });
