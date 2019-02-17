@@ -6,15 +6,13 @@ import app from '../ethereum/connection/app';
 export default class ShowList extends React.Component {
 
     componentDidMount() {
-        console.log("===========", this.props.list);
-        app.dOrgan.on("donorDead",(author, oldValue, newValue, event) =>{
+        app.getDeadDonors().then( r =>{
             axios.post(`${apiServer}/api/users/algorithm`, {
                 data: this.props.list,
-                donor: newValue
-            })
-                .then(response => {
-                    console.log('----------------', response.data);
-                });
+                donor: r[0]
+            }).then(response => {
+                    console.log(response.data);
+            });
         });
     }
 
