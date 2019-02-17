@@ -36,11 +36,11 @@ export default class Main extends Component {
                                         </h2>
                                         <br/>
                                             <p className="has-text-centered">
-                                                <a className="button is-medium is-info is-outlined">
+                                                <a href="/auth" className="button is-medium is-info is-outlined">
                                                     Need an Organ
                                                 </a>
                                                 &nbsp;&nbsp;&nbsp;
-                                                <a className="button is-medium is-info is-outlined">
+                                                <a href="/auth" className="button is-medium is-info is-outlined">
                                                     Donate an Organ
                                                 </a>
                                             </p>

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import app from '../ethereum/connection/app';
+import DashboardNav from '../components/dashboardnav';
 
 export default class DashboardReciever extends React.Component {
     state = {
@@ -15,6 +16,7 @@ export default class DashboardReciever extends React.Component {
         return(
             <React.Fragment>
                 <Header/>
+                <DashboardNav/>
                 <div className="hero">
                     <div className="hero-body">
                         <div className="container">
