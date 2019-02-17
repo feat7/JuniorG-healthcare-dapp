@@ -1,4 +1,4 @@
-import app from '../../ethereum/connection/app';
+const app = require('../../ethereum/connection/app');
 const router = require("express").Router();
 const auth = require("../auth");
 const User = require("../../models/User");
@@ -121,38 +121,36 @@ router.get('/get-details/:eth', (req, res, next) => {
   return User.find({ ethAddress: req.params.eth }).then(
     response => { console.log(response); res.json(response)}
   )
-})
+});
 
 const algorithm = (donor, receiver) => {
-  app.getPriority(receiver.ethAddress).then(
-    response => {
-      console.log(response);
-    }
+  if(receiver.bloodGroup != 'ab' || receiver.rhFactor != '+ve') return 0;
+  else if(donor.bloodGroup != receiver.bloodGroup || donor.rhFactor != receiver.rhFactor) return 0;
+  return app.getPriority(receiver.ethAddress).then(
+    response => response
   );
-  return true;
 };
 
 router.post('/algorithm', (req, res, next) => {
   // req.body.data has blockchain data
+  let idealReceiver, idealPriority = 0;
+
 
   User.findOne({ ethAddress: req.body.donor }).then(
     result => {
-      for (var i = 0; i < req.body.data.length; i++) {
+      for (var i = 0; i < Math.min(req.body.data.length, 10); i++) {
         User.findOne({ ethAddress: item }).then(response => {
-          if (algorithm(result, response)) {
-            res.json(response);
-            break;
+          if (algorithm(result, response) > idealPriority) {
+            idealPriority = algorithm(result, response);
+            idealReceiver = response;
           }
         });
       }
+      res.json({
+        idealReceiver
+      });
     }
   );
-
-  
-  res.json({
-    body: req.body.data,
-    donor: req.body.donor
-  });
 })
 
 module.exports = router;
