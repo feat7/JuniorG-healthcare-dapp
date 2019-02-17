@@ -2,6 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react'
 import Header from '../components/header';
 import Footer from '../components/footer';
+import Navbar from '../components/navbar';
 import app from '../ethereum/connection/app';
 
 export default class LiveDonorApproval extends React.Component {
@@ -18,6 +19,7 @@ export default class LiveDonorApproval extends React.Component {
         return (
             <React.Fragment>
                 <Header/>
+                <Navbar/>
                 <h2>Approve for Transplant</h2>
                 <div className="hero">
                     <div className="hero-body">

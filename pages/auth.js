@@ -155,7 +155,7 @@ export default class Register extends React.Component {
                                                                     <div className="select is-info">
                                                                         <select onChange={e => {this.setState({userType: e.target.value})}} value={this.state.userType}>
                                                                             <option default value="">User Type</option>
-                                                                            <option value="Donor">Donor</option>
+                                                                            <option value="Donar">Donor</option>
                                                                             <option value="Receiver">Receiver</option>
                                                                         </select>
                                                                     </div>

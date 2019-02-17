@@ -12,16 +12,20 @@ import axios from 'axios';
 export default class DashboardVerify extends React.Component {
     state = {
         ethAddress: '',
-        fetchedReciverList: false,
-        receiverList: []
+        fetchedReceiverList: false,
+        fetchedDonorList: false,
+        receiverList: [],
+        donorList: []
     };
 
-    showDonarVerificationList = () => {
+    showDonorVerificationList = () => {
         const { user } = this.props.store;
         axios.get(`${apiServer}/api/users/to-verify-donar`, {
             headers: { Authorization: `Bearer ${user.authToken}` }
         }).then(
-            response => console.log(response)
+            response => {
+                this.setState({ fetchedDonorList: true, donorList: response.data });
+            }
         );
     }
 
@@ -31,39 +35,110 @@ export default class DashboardVerify extends React.Component {
             headers: { Authorization: `Bearer ${user.authToken}` }
         }).then(
             response => {
-                this.setState({ fetchedReciverList: true, receiverList: response.data });
+                this.setState({ fetchedReceiverList: true, receiverList: response.data });
             }
         );
     }
 
     render() {
         const { user } = this.props.store;
-        if(!this.state.fetchedReciverList) {
+        if(!this.state.fetchedReceiverList && !this.state.fetchedDonorList) {
             this.showReceiverVerificationList();
+            this.showDonorVerificationList();
             return (<div className="hero hero-body">Loading..</div>)
         }
+
         return(
             <React.Fragment>
                 <Header/>
                 <Navbar/>
                 <div className="hero">
                     <div className="hero-body">
-                        <div className="container">
-                            {this.state.receiverList.map(item => {
-                                return (
-                                    <div className="box">{item.fullName} {item.email} 
-                                        <button
-                                        onClick={() => {
-                                            axios.get(`${apiServer}/api/users/to-verify-receiver/${item._id}/verify`,
-                                            {
-                                                headers: { Authorization: `Bearer ${user.authToken}` }
-                                            })
-                                            .then(response => {this.setState({ fetchedReciverList: false })})
-                                        }}
-                                        className="button is-primary">Verify</button>
+                        <div className="columns">
+                            <div className="column is-4 is-offset-2">
+                                <nav className="panel">
+                                    <p className="panel-heading">
+                                        Receivers Profile
+                                    </p>
+                                    <div className="panel-block">
+                                        <p className="control has-icons-left">
+                                            <input className="input is-small" type="text" placeholder="search" />
+                                            <span className="icon is-small is-left">
+                                                <i className="fas fa-search" aria-hidden="true"/>
+                                            </span>
+                                        </p>
                                     </div>
-                                )
-                            })}
+                                    {this.state.receiverList.map(item => {
+                                        return (
+                                            <div className="panel-block" key={item.id}>
+                                                <article className="message is-primary" style={{ width: '100%'}}>
+                                                    <div className="message-body">
+                                                        {item.fullName} | {item.bloodGroup} {item.rhFactor}
+                                                        <br />
+                                                        <a href="#">{item.email}</a>
+                                                        <br />
+                                                        {item.ethAddress}
+                                                    </div>
+                                                    <a onClick={() => {
+                                                        axios.get(`${apiServer}/api/users/to-verify-receiver/${item._id}/verify`,
+                                                            {
+                                                                headers: { Authorization: `Bearer ${user.authToken}` }
+                                                            })
+                                                            .then(response => {this.setState({ fetchedReceiverList: false })})
+                                                    }} className="button is-primary is-fullwidth">Approve</a>
+                                                </article>
+                                            </div>
+                                        )
+                                    })}
+                                    <div className="panel-block">
+                                        <button className="button is-link is-outlined is-fullwidth">
+                                            reset all filters
+                                        </button>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div className="column is-4">
+                                <nav className="panel">
+                                    <p className="panel-heading">
+                                        Donors Profile
+                                    </p>
+                                    <div className="panel-block">
+                                        <p className="control has-icons-left">
+                                            <input className="input is-small" type="text" placeholder="search" />
+                                            <span className="icon is-small is-left">
+                                                <i className="fas fa-search" />
+                                            </span>
+                                        </p>
+                                    </div>
+                                    {this.state.donorList.map(item => {
+                                        return (
+                                            <div className="panel-block" key={item.id}>
+                                                <article className="message is-primary" style={{ width: '100%'}}>
+                                                    <div className="message-body">
+                                                        {item.fullName} | {item.bloodGroup} {item.rhFactor}
+                                                        <br />
+                                                        <a href="#">{item.email}</a>
+                                                        <br />
+                                                        {item.ethAddress}
+                                                    </div>
+                                                    <a onClick={() => {
+                                                        axios.get(`${apiServer}/api/users/to-verify-donar/${item._id}/verify`,
+                                                            {
+                                                                headers: { Authorization: `Bearer ${user.authToken}` }
+                                                            })
+                                                            .then(response => {this.setState({ fetchedDonorList: false })})
+                                                    }} className="button is-primary is-fullwidth">Approve</a>
+                                                </article>
+                                            </div>
+                                        )
+                                    })}
+                                    <div className="panel-block">
+                                        <button className="button is-link is-outlined is-fullwidth">
+                                            reset all filters
+                                        </button>
+                                    </div>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>

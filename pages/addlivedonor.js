@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import Navbar from '../components/navbar';
 import app from '../ethereum/connection/app';
 
 export default class Addlivedonor extends React.Component {
@@ -14,6 +15,7 @@ export default class Addlivedonor extends React.Component {
         return(
             <React.Fragment>
                 <Header/>
+                <Navbar/>
                 <div className="hero">
                     <div className="hero-body">
                         <div className="container">
