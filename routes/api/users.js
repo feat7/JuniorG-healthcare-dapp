@@ -133,6 +133,7 @@ const algorithm = (donor, receiver) => {
 
 router.post('/algorithm', (req, res, next) => {
   // req.body.data has blockchain data
+  // Return ideal receiver
   let idealReceiver = req.body.data[0], idealPriority = 0;
 
 
