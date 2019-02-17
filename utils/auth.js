@@ -3,7 +3,7 @@ import { apiServer } from "../config";
 import { runInAction } from "mobx";
 
 export const login = (userDetails, store) => {
-  const { user } = store;
+  const { user, ui } = store;
   return axios
     .post(`${apiServer}/api/users/login`, {
       user: userDetails
@@ -15,18 +15,26 @@ export const login = (userDetails, store) => {
         return response.data;
       })
     )
-    .catch(e => false);
+    .catch(e => runInAction(() => {
+      ui.isError = true;
+      ui.errorMessage = e.response.data.message;
+      return false;
+    }));
 };
 
 export const register = (userDetails, store) => {
-  const { user } = store;
+  const { user, ui } = store;
   return axios
     .post(`${apiServer}/api/users`, {
       user: userDetails
     })
     .then(response => {
       user.details = response.data;
-      return true;
+      return response.data;
     })
-    .catch(e => false);
+    .catch(e =>  runInAction(() => {
+      ui.isError = true;
+      ui.errorMessage = e.response.data.message;
+      return false;
+    }));
 };

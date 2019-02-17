@@ -67,10 +67,21 @@ export default class Register extends React.Component {
 
         register(data, this.props.store).then(function(response){
             console.log(response);
+            const userType = get(["user","userType"])(response);
+            if(userType == 'Receiver') {
+                //To Receiver dashboard
+                Router.replace('/addreciever');
+            } else if(userType == 'Donar') {
+                Router.replace('/addlivedonor');
+            } else if(userType == 'Admin') {
+                // To admin
+                Router.replace('/dashboardVerify');
+            }
         });
     }
 
     render() {
+        const { ui } = this.props.store;
         return (
             <React.Fragment>
                 <Header/>
@@ -109,11 +120,12 @@ export default class Register extends React.Component {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div className="has-text-danger">{ui.isError && ui.errorMessage}</div>
                                             </div>
                                             <footer className="card-footer">
                                                 <a onClick={() => {
                                                     this.handleLogin()
-                                                }} href="#" className="card-footer-item">Login</a>
+                                                }} href="#" className="button is-primary card-footer-item">Login</a>
                                             </footer>
                                         </div>
                                     </div>
@@ -213,11 +225,12 @@ export default class Register extends React.Component {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div className="has-text-danger">{ui.isError && ui.errorMessage}</div>
                                             </div>
                                             <footer className="card-footer">
                                                 <a onClick={() => {
                                                     this.handleRegister();
-                                                }} href="#" className="card-footer-item">Register</a>
+                                                }} href="#" className="button is-primary card-footer-item">Register</a>
                                             </footer>
                                         </div>
                                     </div>
