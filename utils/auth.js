@@ -12,7 +12,7 @@ export const login = (userDetails, store) => {
       runInAction(() => {
         user.details = response.data;
         user.authToken = response.data.token;
-        return true;
+        return response.data;
       })
     )
     .catch(e => false);

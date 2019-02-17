@@ -1,8 +1,10 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react'; 
+import { inject, observer } from 'mobx-react';
+import Router from 'next/router'
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
+import { get } from '../utils';
 import {login, register} from '../utils/auth';
 
 @inject('store')
@@ -34,24 +36,21 @@ export default class Register extends React.Component {
             "email": this.state.email,
             "password": this.state.password
         };
+        const { user } = this.props.store;
+        console.log(this.props);
         login(data, this.props.store).then(function(response){
             console.log(response);
+            const userType = get(["userType"])(response);
+            if(userType == 'Receiver') {
+                //To Receiver dashboard
+                Router.replace('/addreciever');
+            } else if(userType == 'Donar') {
+                Router.replace('/addlivedonor');
+            } else if(userType == 'Admin') {
+                // To admin
+                Router.replace('/dashboardVerify');
+            }
         });
-        // fetch('/server/api/users/login', {
-        //     method: 'POST',
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     }
-        // }).then(function(response) {
-        //     // response.status     //=> number 100–599
-        //     // response.statusText //=> String
-        //     // response.headers    //=> Headers
-        //     // response.url        //=> String
-        //     console.log(response);
-        // }, function(error) {
-        //     console.log(error.message); //=> String
-        // });
     }
 
     handleRegister(){
@@ -155,7 +154,7 @@ export default class Register extends React.Component {
                                                                     <div className="select is-info">
                                                                         <select onChange={e => {this.setState({userType: e.target.value})}} value={this.state.userType}>
                                                                             <option default value="">User Type</option>
-                                                                            <option value="Donor">Donor</option>
+                                                                            <option value="Donar">Donor</option>
                                                                             <option value="Receiver">Receiver</option>
                                                                         </select>
                                                                     </div>
