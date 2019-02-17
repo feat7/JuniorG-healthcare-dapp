@@ -34,13 +34,13 @@ export default class Patients extends React.Component {
                                             <span className="tag is-medium is-primary">Start</span>
                                         </header>
                                         <ShowList list={this.props.recievers}/>
-                                        {this.props.recievers.map((item, index) => {
+                                        {this.props.recievers.length > 0 && this.props.recievers.map((item, index) => {
                                             return(
                                                 <div className="timeline-item">
                                                     <div className="timeline-marker"></div>
                                                     <div className="timeline-content">
                                                         <p className="heading">Block {index+1}</p>
-                                                        <p>{this.showBlockDetails(item)}</p>
+                                                        <p>{item}</p>
                                                     </div>
                                                 </div>
                                             );

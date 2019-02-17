@@ -11,7 +11,9 @@ export default class ShowList extends React.Component {
                 data: this.props.list,
                 donor: r[0]
             }).then(response => {
-                    console.log(response.data);
+                    console.log('6666666666666', response.data);
+            }).catch(e => {
+                console.log(e.message)
             });
         });
     }
