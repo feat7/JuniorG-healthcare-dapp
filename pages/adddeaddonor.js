@@ -1,21 +1,17 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react'
 import Header from '../components/header';
 import Footer from '../components/footer';
 import app from '../ethereum/connection/app';
 
-export default class DashboardDeadDonor extends React.Component {
-
+export default class Addlivedonor extends React.Component {
     state = {
         ethAddress: '',
     };
     onSubmit = () => {
         app.addDeadDonor(this.state.ethAddress).then(r => console.log(r));
     };
-
     render() {
-        console.log(this.props.store);
-        return (
+        return(
             <React.Fragment>
                 <Header/>
                 <div className="hero">
