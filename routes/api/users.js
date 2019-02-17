@@ -133,10 +133,11 @@ const algorithm = (donor, receiver) => {
 
 router.post('/algorithm', (req, res, next) => {
   // req.body.data has blockchain data
-  let idealReceiver, idealPriority = 0;
+  // Return ideal receiver
+  let idealReceiver = req.body.data[0], idealPriority = 0;
 
 
-  User.findOne({ ethAddress: req.body.donor }).then(
+  return User.findOne({ ethAddress: req.body.donor }).then(
     result => {
       for (var i = 0; i < Math.min(req.body.data.length, 10); i++) {
         User.findOne({ ethAddress: item }).then(response => {
