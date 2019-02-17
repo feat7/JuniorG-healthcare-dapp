@@ -2,6 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react'
 import Header from '../components/header';
 import Footer from '../components/footer';
+import Navbar from '../components/navbar';
 import app from '../ethereum/connection/app';
 
 export default class LiveDonorApproval extends React.Component {
@@ -18,11 +19,18 @@ export default class LiveDonorApproval extends React.Component {
         return (
             <React.Fragment>
                 <Header/>
-                <h2>Approve for Transplant</h2>
+                <Navbar/>
+                <br />
                 <div className="hero">
                     <div className="hero-body">
                         <div className="container">
                             <div className="field">
+                                <h1>
+                                    <strong>
+                                        Approve for Transplant
+                                    </strong>
+                                </h1>
+                                <br />
                                 <div className="control">
                                     <input value={this.state.ethAddress} className="input" type="text" placeholder="Eth Address" onChange={(e) => {
                                         this.setState({ ethAddress: e.target.value })

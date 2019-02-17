@@ -180,21 +180,53 @@ export default class Register extends React.Component {
                                         ) : (
                                             <React.Fragment>
                                                 <div className="card-content">
-                                                <div className="content">
-                                                    <div className="field">
-                                                        <div className="control">
-                                                            <input value={this.state.fullName} className="input" type="text" placeholder="Full Name" onChange={(e) => {
-                                                                this.setState({ fullName: e.target.value })
-                                                            }}/>
+                                                    <div className="content">
+                                                        <div className="field">
+                                                            <div className="control">
+                                                                <input value={this.state.fullName} className="input" type="text" placeholder="Full Name" onChange={(e) => {
+                                                                    this.setState({ fullName: e.target.value })
+                                                                }}/>
+                                                            </div>
+                                                        </div>
+                                                        <div className="columns">
+                                                            <div className="column is-8">
+                                                                <div className="field">
+                                                                    <div className="control">
+                                                                        <input value={this.state.email} className="input" type="email" placeholder="Email" onChange={(e) => {
+                                                                            this.setState({ email: e.target.value })
+                                                                        }}/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="column is-4">
+                                                                <div className="field">
+                                                                    <div className="control">
+                                                                        <div className="select is-info">
+                                                                            <select onChange={e => {this.setState({userType: e.target.value})}} value={this.state.userType}>
+                                                                                <option default value="">User Type</option>
+                                                                                <option value="Donar">Donor</option>
+                                                                                <option value="Receiver">Receiver</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                {this.renderCheckBox()}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div className="columns">
-                                                        <div className="column is-8">
+                                                        <div className="column is-4">
                                                             <div className="field">
                                                                 <div className="control">
-                                                                    <input value={this.state.email} className="input" type="email" placeholder="Email" onChange={(e) => {
-                                                                        this.setState({ email: e.target.value })
-                                                                    }}/>
+                                                                    <div className="select is-info">
+                                                                        <select onChange={e => {this.setState({bloodGroup: e.target.value})}} value={this.state.bloodGroup}>
+                                                                            <option default value="">Select Blood Group</option>
+                                                                            <option value="a">A</option>
+                                                                            <option value="b">B</option>
+                                                                            <option value="o">O</option>
+                                                                            <option value="ab">AB</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -202,77 +234,45 @@ export default class Register extends React.Component {
                                                             <div className="field">
                                                                 <div className="control">
                                                                     <div className="select is-info">
-                                                                        <select onChange={e => {this.setState({userType: e.target.value})}} value={this.state.userType}>
-                                                                            <option default value="">User Type</option>
-                                                                            <option value="Donar">Donor</option>
-                                                                            <option value="Receiver">Receiver</option>
+                                                                        <select onChange={e => {this.setState({rhFactor: e.target.value})}} value={this.state.rhFactor}>
+                                                                            <option default value="">Select RH Factor</option>
+                                                                            <option value="+ve">+ve</option>
+                                                                            <option value="-ve">-ve</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            {this.renderCheckBox()}
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div className="columns">
-                                                    <div className="column is-4">
-                                                        <div className="field">
-                                                            <div className="control">
-                                                                <div className="select is-info">
-                                                                    <select onChange={e => {this.setState({bloodGroup: e.target.value})}} value={this.state.bloodGroup}>
-                                                                        <option default value="">Select Blood Group</option>
-                                                                        <option value="a">A</option>
-                                                                        <option value="b">B</option>
-                                                                        <option value="o">O</option>
-                                                                        <option value="ab">AB</option>
-                                                                    </select>
+                                                        <div className="column is-4">
+                                                            <div className="field">
+                                                                <div className="control">
+                                                                    <input value={this.state.dob} className="input" type="date" placeholder="Bate Of Birth" onChange={(e) => {
+                                                                        this.setState({ dob: e.target.value })
+                                                                    }}/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="column is-4">
-                                                        <div className="field">
-                                                            <div className="control">
-                                                                <div className="select is-info">
-                                                                    <select onChange={e => {this.setState({rhFactor: e.target.value})}} value={this.state.rhFactor}>
-                                                                        <option default value="">Select RH Factor</option>
-                                                                        <option value="+ve">+ve</option>
-                                                                        <option value="-ve">-ve</option>
-                                                                    </select>
+                                                    <div className="columns">
+                                                        <div className="column">
+                                                            <div className="field">
+                                                                <div className="control">
+                                                                    <input value={this.state.password} className="input" type="password" placeholder="Password" onChange={(e) => {
+                                                                        this.setState({ password: e.target.value })
+                                                                    }}/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="column is-4">
-                                                        <div className="field">
-                                                            <div className="control">
-                                                                <input value={this.state.dob} className="input" type="date" placeholder="Bate Of Birth" onChange={(e) => {
-                                                                    this.setState({ dob: e.target.value })
-                                                                }}/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <div className="has-text-danger">{ui.isError && ui.errorMessage}</div>
+                                                    <footer className="card-footer">
+                                                        <a onClick={() => {
+                                                            this.handleRegister();
+                                                        }} href="#" className="button is-primary card-footer-item">Register</a>
+                                                    </footer>
                                                 </div>
-                                                <div className="columns">
-                                                    <div className="column">
-                                                        <div className="field">
-                                                            <div className="control">
-                                                                <input value={this.state.password} className="input" type="password" placeholder="Password" onChange={(e) => {
-                                                                    this.setState({ password: e.target.value })
-                                                                }}/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="has-text-danger">{ui.isError && ui.errorMessage}</div>
-                                                <footer className="card-footer">
-                                                    <a onClick={() => {
-                                                        this.handleRegister();
-                                                    }} href="#" className="button is-primary card-footer-item">Register</a>
-                                                </footer>
                                             </React.Fragment>
                                         )}
-                                </div>
                                 </div>
                             </div>
                         </div>
