@@ -18,10 +18,21 @@ export default class Register extends React.Component {
         rhFactor: '',
     };
 
+    constructor(props){
+        super(props);
+        let {store} = props;
+        if(store.user.authToken === "guesttoken"){
+            console.log("Not logged in");
+        }else{
+            console.log("Looged in");
+        }
+        console.log(store.user.authToken);
+    }
+
     handleLogin(){
         let data = {
-                "email": this.state.email,
-                "password": this.state.password
+            "email": this.state.email,
+            "password": this.state.password
         };
         login(data, this.props.store).then(function(response){
             console.log(response);

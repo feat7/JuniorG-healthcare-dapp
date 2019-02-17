@@ -44,6 +44,10 @@ const UserSchema = new Schema({
         enum: Object.values(UserTypes)
     },
     ethAddress: String,
+    status: {
+        type: Boolean,
+        default: false
+    }
 },{
     timestamps: {
         createdAt: 'created_at',
