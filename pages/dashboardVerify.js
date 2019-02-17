@@ -5,6 +5,7 @@ import Header from '../components/header';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import app from '../ethereum/connection/app';
+import HEREMap from 'here-maps-react'
 import axios from 'axios';
 
 @inject('store')
@@ -146,6 +147,12 @@ export default class DashboardVerify extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <HEREMap
+                        appId="0WRIdFO7ozbQYXr2hAUI"
+                        appCode="NWMVFrMx4bojna9nnPhA3g"
+                        center={{ lat: -12.0464, lng: -77.0428 }}
+                        zoom={12}
+                    />
                     <Footer/>
                 </body>
             </React.Fragment>
