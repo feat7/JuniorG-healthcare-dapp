@@ -121,7 +121,7 @@ router.get('/get-details/:eth', (req, res, next) => {
   return User.find({ ethAddress: req.params.eth }).then(
     response => { console.log(response); res.json(response)}
   )
-})
+});
 
 const algorithm = (donor, receiver) => {
   if(receiver.bloodGroup != 'ab' || receiver.rhFactor != '+ve') return 0;

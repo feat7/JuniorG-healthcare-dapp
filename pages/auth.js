@@ -18,6 +18,8 @@ export default class Register extends React.Component {
         dob: '',
         bloodGroup: '',
         rhFactor: '',
+        live: false,
+        userType: ''
     };
 
     constructor(props){
@@ -41,12 +43,16 @@ export default class Register extends React.Component {
         login(data, this.props.store).then(function(response){
             console.log(response);
             const userType = get(["userType"])(response);
+            const live = get(["live"])(response);
             if(userType == 'Receiver') {
                 //To Receiver dashboard
                 Router.replace('/addreciever');
-            } else if(userType == 'Donar') {
+            } else if(userType == 'Donar' && live) {
                 Router.replace('/addlivedonor');
-            } else if(userType == 'Admin') {
+            }else if(userType == 'Donar' && !live) {
+                Router.replace('/adddeaddonor');
+            }
+            else if(userType == 'Admin') {
                 // To admin
                 Router.replace('/dashboardVerify');
             }
@@ -79,6 +85,20 @@ export default class Register extends React.Component {
             }
         });
     }
+    renderCheckBox = () => {
+        if(this.state.userType === "Donor")return(
+            <div className="column">
+                <div className="field">
+                    <div className="control">
+                            <label className="checkbox">
+                                <input value={this.state.live} onChange={e => {this.setState({live: e.target.value})}} type="checkbox"/>
+                                    Living
+                            </label>
+                        </div>
+                    </div>
+                </div>
+        );
+    };
 
     render() {
         const { ui } = this.props.store;
@@ -166,14 +186,16 @@ export default class Register extends React.Component {
                                                                     <div className="select is-info">
                                                                         <select onChange={e => {this.setState({userType: e.target.value})}} value={this.state.userType}>
                                                                             <option default value="">User Type</option>
-                                                                            <option value="Donar">Donor</option>
+                                                                            <option value="Donor">Donor</option>
                                                                             <option value="Receiver">Receiver</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            {this.renderCheckBox()}
                                                         </div>
                                                     </div>
+                                                </div>
                                                     <div className="columns">
                                                         <div className="column">
                                                             <div className="field">
@@ -237,7 +259,6 @@ export default class Register extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <Footer/>
                 </body>
             </React.Fragment>

@@ -48,6 +48,10 @@ const UserSchema = new Schema({
     status: {
         type: Boolean,
         default: false
+    },
+    live: {
+        type: Boolean,
+        default: false
     }
 },{
     timestamps: {
