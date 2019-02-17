@@ -36,6 +36,7 @@ contract dOrgan{
     address[] liveDonorArr;
     address[] deadDonorArr;
     address[] transplantArr;
+    address[] waitlistArr;
 
     // Mappings
     mapping(address => Reciever) recievers;
@@ -158,10 +159,18 @@ contract dOrgan{
     }
 
     function addRecieverToWaitlist(address addr)public verifyRecieverExist(addr){
+        waitlistArr.push(addr);
         waitlist[addr] = recievers[addr];
     }
 
+    function getWaitlist() public view returns(address[] memory){
+        return waitlistArr;
+    }
+
     function removeRecieverFromWaitlist(address addr)public verifyRecieverExist(addr){
+        for(uint i = 0; i<waitlistArr.length;i++){
+            if(waitlistArr[i] == addr) delete waitlistArr[i];
+        }
         delete waitlist[addr];
     }
 
@@ -284,6 +293,8 @@ contract dOrgan{
     function transplantLiveDonor(address reciever1,address donor1) public checkTransplantedExist(reciever1) verifyAdmin verifyRecieverExist(reciever1) verifyLiveDonorExist(donor1) approveLiveDonor(donor1) checkVerifyReciever(reciever1) checkVerifyLiveDonor(donor1) {
         transplants[reciever1] = Transplant(reciever1,donor1,true);
         transplantArr.push(reciever1);
+        removeReciever(reciever1);
+        removeLiveDonor(donor1);
         delete liveDonors[donor1];
     }
 
@@ -292,6 +303,9 @@ contract dOrgan{
             transplants[reciever1] = Transplant(reciever1,donor1,true);
             deadDonors[donor1].kidnies --;
             transplantArr.push(reciever1);
+            removeReciever(reciever1);
+            removeLiveDonor(donor1);
+            removeRecieverFromWaitlist(reciever1);
             delete waitlist[reciever1];
         }
         if(deadDonors[donor1].kidnies == 0){
@@ -299,7 +313,11 @@ contract dOrgan{
         }
     }
 
-    function getTransplant(address reciever1)public view verifyAdmin returns(address){
+    function getTransplant(address reciever1)public view returns(address){
         return transplants[reciever1].donor;
+    }
+
+    function getTransplants() public view returns(address[] memory){
+        return transplantArr;
     }
 }

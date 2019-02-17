@@ -1,6 +1,7 @@
 import axios from "axios";
 import { apiServer } from "../config";
 import { runInAction } from "mobx";
+import web3 from '../ethereum/web3';
 
 export const login = (userDetails, store) => {
   const { user } = store;
@@ -20,6 +21,7 @@ export const login = (userDetails, store) => {
 
 export const register = (userDetails, store) => {
   const { user } = store;
+  userDetails.ethAddress = web3.eth.accounts[1];
   return axios
     .post(`${apiServer}/api/users`, {
       user: userDetails

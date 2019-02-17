@@ -22,8 +22,8 @@ const HDWalletProvider = require('truffle-hdwallet-provider');
 const infuraKey = "34db7aa51a29454db3a3b3b68abd92ca";
 
 // const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
-// Deployed address 0x46283B7AC41939e73DDB63030BC5fdD2fDB24E33
+const mnemonic = "toss strong carpet cloth twin nominee cave skull fog gap enroll toy";
+// Deployed address 0x23f98Bb23D495F7e2d9426Eb5f5094E865def3a2
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
