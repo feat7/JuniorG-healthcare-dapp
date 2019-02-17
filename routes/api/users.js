@@ -89,20 +89,29 @@ router.get('/to-verify-donar', auth.required, (req, res, next) => {
 });
 
 router.get('/to-verify-donar/:id/verify', auth.required, (req, res, next) => {
-  return User.findOneAndUpdate({ _id: req.params.id, userType: 'Donar' }, {$set:{status: true}}).then(results => {
+  return User.findOneAndUpdate({ _id: req.params.id, userType: 'Donar' }, {$set:{status: true}},
+  {
+      returnNewDocument: true
+  }).then(results => {
     return res.json(results);
   });
 });
 
 router.get('/to-verify-receiver', auth.required, (req, res, next) => {
-  return User.find({ userType: 'Receiver' }).then(results => {
+  return User.find({ userType: 'Receiver', status: false }).then(results => {
     return res.json(results);
   });
 });
 
 router.get('/to-verify-receiver/:id/verify', auth.required, (req, res, next) => {
-  return User.findOneAndUpdate({ _id: req.params.id, userType: 'Receiver' }, {$set:{status: true}}).then(results => {
+  return User.findOneAndUpdate({ _id: req.params.id, userType: 'Receiver' }, {$set:{status: true}},
+  {
+      returnNewDocument: true
+  }).then(results => {
     return res.json(results);
+  })
+  .catch(e => {
+    res.send(400).json({ message: 'Some error occured' })
   });
 });
 

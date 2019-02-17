@@ -48,17 +48,6 @@ export default class Main extends Component {
                                 </div>
                             </div>
                         </div>
-
-                        <div className="hero-foot">
-                            <div className="container">
-                                <h1 className="title has-text-primary">
-                                    Hello World
-                                </h1>
-                                <p className="subtitle">
-                                    My first website with <strong>Bulma</strong>!
-                                </p>
-                            </div>
-                        </div>
                     </section>
                     <Footer/>
                 </body>
