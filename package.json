@@ -26,6 +26,7 @@
     "client-persist": "^1.8.6",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "here-maps-react": "^0.1.0",
     "jsonwebtoken": "^8.4.0",
     "mobx": "^5.9.0",
     "mobx-persist": "^0.4.1",
