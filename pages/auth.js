@@ -18,7 +18,7 @@ export default class Register extends React.Component {
         dob: '',
         bloodGroup: '',
         rhFactor: '',
-        loginTabActive: true
+        loginTabActive: true,
         live: false,
         userType: ''
     };
@@ -174,7 +174,8 @@ export default class Register extends React.Component {
                                                 </footer>
                                             </div>
                                         ) : (
-                                            <div className="card-content">
+                                            <React.Fragment>
+                                                <div className="card-content">
                                                 <div className="content">
                                                     <div className="field">
                                                         <div className="control">
@@ -266,8 +267,9 @@ export default class Register extends React.Component {
                                                         this.handleRegister();
                                                     }} href="#" className="button is-primary card-footer-item">Register</a>
                                                 </footer>
-                                            </div>
+                                            </React.Fragment>
                                         )}
+                                </div>
                                 </div>
                             </div>
                         </div>
