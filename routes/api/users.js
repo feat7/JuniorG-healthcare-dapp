@@ -1,3 +1,4 @@
+import app from '../../ethereum/connection/app';
 const router = require("express").Router();
 const auth = require("../auth");
 const User = require("../../models/User");
@@ -114,5 +115,44 @@ router.get('/to-verify-receiver/:id/verify', auth.required, (req, res, next) => 
     res.send(400).json({ message: 'Some error occured' })
   });
 });
+
+
+router.get('/get-details/:eth', (req, res, next) => {
+  return User.find({ ethAddress: req.params.eth }).then(
+    response => { console.log(response); res.json(response)}
+  )
+})
+
+const algorithm = (donor, receiver) => {
+  app.getPriority(receiver.ethAddress).then(
+    response => {
+      console.log(response);
+    }
+  );
+  return true;
+};
+
+router.post('/algorithm', (req, res, next) => {
+  // req.body.data has blockchain data
+
+  User.findOne({ ethAddress: req.body.donor }).then(
+    result => {
+      for (var i = 0; i < req.body.data.length; i++) {
+        User.findOne({ ethAddress: item }).then(response => {
+          if (algorithm(result, response)) {
+            res.json(response);
+            break;
+          }
+        });
+      }
+    }
+  );
+
+  
+  res.json({
+    body: req.body.data,
+    donor: req.body.donor
+  });
+})
 
 module.exports = router;

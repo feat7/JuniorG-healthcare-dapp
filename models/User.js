@@ -7,6 +7,7 @@ const appSecret = require("../config").appSecret;
 const { Schema } = mongoose;
 const saltRounds = 10;
 
+
 const BloodGroups = Object.freeze({
     A: 'a',
     B: 'b',
