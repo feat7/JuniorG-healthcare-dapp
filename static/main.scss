@@ -7,14 +7,14 @@ $info: #9c4dcc;
 $family-primary: "Lato", serif;
 $link: #38006b;
 
-$beige-light: #e57373;
-$beige-lighter: #ffa4a2;
+$beige-light: #ddb7b7;
+$beige-lighter: #fdfdfd;
 
 // Update some of Bulma's component variables
 $control-border-width: 1px;
 $control-border-color: $primary;
 $input-background-color: $beige-lighter;
-$input-border-color: transparent;
+$input-border-color: $primary;
 $input-shadow: none;
 
 h1,
