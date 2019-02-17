@@ -84,11 +84,13 @@ export default class DashboardVerify extends React.Component {
                                                             {item.ethAddress}
                                                         </div>
                                                         <a onClick={() => {
-                                                            axios.get(`${apiServer}/api/users/to-verify-receiver/${item._id}/verify`,
-                                                                {
-                                                                    headers: { Authorization: `Bearer ${user.authToken}` }
-                                                                })
-                                                                .then(response => {this.setState({ fetchedReceiverList: false })})
+                                                            app.verifyRecieverByAdmin().then(() => {
+                                                                axios.get(`${apiServer}/api/users/to-verify-receiver/${item._id}/verify`,
+                                                                    {
+                                                                        headers: { Authorization: `Bearer ${user.authToken}` }
+                                                                    })
+                                                                    .then(response => {this.setState({ fetchedReceiverList: false })})
+                                                            });
                                                         }} className="button is-primary is-fullwidth">Approve</a>
                                                     </article>
                                                 </div>
@@ -126,11 +128,27 @@ export default class DashboardVerify extends React.Component {
                                                             {item.ethAddress}
                                                         </div>
                                                         <a onClick={() => {
-                                                            axios.get(`${apiServer}/api/users/to-verify-donar/${item._id}/verify`,
-                                                                {
-                                                                    headers: { Authorization: `Bearer ${user.authToken}` }
-                                                                })
-                                                                .then(response => {this.setState({ fetchedDonorList: false })})
+                                                            if(item.live) {
+                                                                app.verifyLiveDonorByAdmin(item.ethAddress).then(() => {
+                                                                    axios.get(`${apiServer}/api/users/to-verify-donar/${item._id}/verify`,
+                                                                        {
+                                                                            headers: {Authorization: `Bearer ${user.authToken}`}
+                                                                        })
+                                                                        .then(response => {
+                                                                            this.setState({fetchedDonorList: false})
+                                                                        })
+                                                                });
+                                                            }else{
+                                                                app.verifyDeadDonorByAdmin(item.ethAddress).then(() => {
+                                                                    axios.get(`${apiServer}/api/users/to-verify-donar/${item._id}/verify`,
+                                                                        {
+                                                                            headers: {Authorization: `Bearer ${user.authToken}`}
+                                                                        })
+                                                                        .then(response => {
+                                                                            this.setState({fetchedDonorList: false})
+                                                                        })
+                                                                });
+                                                            }
                                                         }} className="button is-primary is-fullwidth">Approve</a>
                                                     </article>
                                                 </div>
