@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import app from '../ethereum/connection/app';
+import DashboardNav from '../components/dashboardnav';
 
 export default class DashboardReciever extends React.Component {
     state = {
@@ -15,20 +16,27 @@ export default class DashboardReciever extends React.Component {
         return(
             <React.Fragment>
                 <Header/>
+                <DashboardNav/>
                 <div className="hero">
                     <div className="hero-body">
                         <div className="container">
-                            <div className="field">
-                                <div className="control">
-                                    <input value={this.state.ethAddress} className="input" type="text" placeholder="Eth Address" onChange={(e) => {
-                                        this.setState({ ethAddress: e.target.value })
-                                    }}/>
-                                    <input value={this.state.priority} className="input" type="text" placeholder="Priority" onChange={(e) => {
-                                        this.setState({ priority: e.target.value })
-                                    }}/>
+                            <div className="box">
+                                <div className="field">
+                                    <div className="control">
+                                        <input value={this.state.ethAddress} className="input" type="text" placeholder="Eth Address" onChange={(e) => {
+                                            this.setState({ ethAddress: e.target.value })
+                                        }}/>
+                                    </div>
                                 </div>
+                                <div className="field">
+                                    <div className="control">
+                                        <input value={this.state.priority} className="input" type="text" placeholder="Priority" onChange={(e) => {
+                                            this.setState({ priority: e.target.value })
+                                        }}/>
+                                    </div>
+                                </div>
+                                <button className="button is-primary" onClick={this.onSubmit}>Register for Kidney Reciever</button>
                             </div>
-                            <button className="button is-primary" onClick={this.onSubmit}>Register for Kidney Reciever</button>
                         </div>
                     </div>
                 </div>

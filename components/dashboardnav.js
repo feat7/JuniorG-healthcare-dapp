@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Navbar extends Component{
+export default class DashboardNav extends Component{
     render(){
         return (
             <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
@@ -44,12 +44,9 @@ export default class Navbar extends Component{
                     <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                        <a href="/auth" class="button is-primary">
-                            <strong>Sign up</strong>
-                        </a>
-                        <a href="/auth" class="button is-light">
-                            Log in
-                        </a>
+                            <a href="/auth" class="button is-primary">
+                                <strong>Logout</strong>
+                            </a>
                         </div>
                     </div>
                     </div>
