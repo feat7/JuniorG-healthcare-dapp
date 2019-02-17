@@ -1,11 +1,9 @@
-const web3 = require( '../web3' );
-
 const dorgan_artifact = require('../build/contracts/dOrgan.json');
 
 const ethers = require('ethers');
 
 let web3Provider = ethers.getDefaultProvider('ropsten');
-let contractAddress = "0x46283B7AC41939e73DDB63030BC5fdD2fDB24E33";
+let contractAddress = "0x23f98Bb23D495F7e2d9426Eb5f5094E865def3a2";
 
 let privateKey = '0x31b52c32c3aa048dde03def434300b90f4a39f4f97ac3ea0bf8619ce4a6df8e1';
 let wallet = new ethers.Wallet(privateKey, web3Provider);
@@ -37,7 +35,7 @@ module.exports = {
             }).catch(function(e) {
                 return e;
             });
-    },
+    },             //done
     getRecievers: async function() {
         return dOrgan.getRecievers()
             .then(function(res) {
@@ -45,7 +43,7 @@ module.exports = {
             }).catch(function(e) {
                 return e;
             });
-    },
+    },                            //done
     updateReciever: async function(oldAddr,newAddr) {
         return dOrgan.updateReciever(oldAddr,newAddr)
             .then(function() {
@@ -54,18 +52,18 @@ module.exports = {
                 return e;
             });
     },
-    getTransplanted: async function(address) {
-        return dOrgan.getTransplanted(address)
-            .then(function(res) {
-                return res;
-            }).catch(function(e) {
-                return e;
-            });
-    },
     addRecieverToWaitlist: async function(address) {
         return dOrgan.addRecieverToWaitlist(address)
             .then(function() {
                 return "success";
+            }).catch(function(e) {
+                return e;
+            });
+    },
+    getWaitlist: async function() {
+        return dOrgan.getRecievers()
+            .then(function(res) {
+                return res;
             }).catch(function(e) {
                 return e;
             });
@@ -118,7 +116,7 @@ module.exports = {
             }).catch(function(e) {
                 return e;
             });
-    },
+    },                    //done
     getLiveDonors: async function() {
         return dOrgan.getLiveDonors()
             .then(function(res) {
@@ -126,7 +124,7 @@ module.exports = {
             }).catch(function(e) {
                 return e;
             });
-    },
+    },                          //done
     removeLiveDonor: async function(address) {
         return dOrgan.removeLiveDonor(address)
             .then(function() {
@@ -183,7 +181,7 @@ module.exports = {
             }).catch(function(e) {
                 return e;
             });
-    },
+    },                   //done
     getDeadDonors: async function() {
         return dOrgan.getDeadDonors()
             .then(function(res) {
@@ -191,7 +189,7 @@ module.exports = {
             }).catch(function(e) {
                 return e;
             });
-    },
+    },                         //done
     removeDeadDonor: async function(address) {
         return dOrgan.removeDeadDonor(address)
             .then(function() {
@@ -272,5 +270,15 @@ module.exports = {
             }).catch(function(e) {
                 return e;
             });
-    }
+    },
+    getTransplants: async function() {
+        return dOrgan.getTransplants()
+            .then(function (res) {
+                return res;
+            }).catch(function (e) {
+                return e;
+            });
+    },
+
+    dOrgan: dOrgan
 };

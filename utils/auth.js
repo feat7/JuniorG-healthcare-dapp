@@ -1,6 +1,7 @@
 import axios from "axios";
 import { apiServer } from "../config";
 import { runInAction } from "mobx";
+import web3 from '../ethereum/web3';
 
 export const login = (userDetails, store) => {
   const { user, ui } = store;
@@ -23,7 +24,7 @@ export const login = (userDetails, store) => {
 };
 
 export const register = (userDetails, store) => {
-  const { user, ui } = store;
+  const { user } = store;
   return axios
     .post(`${apiServer}/api/users`, {
       user: userDetails
