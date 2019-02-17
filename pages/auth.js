@@ -118,7 +118,7 @@ export default class Register extends React.Component {
                 <body>
                     <Navbar/>
                     <br />
-                    <div className="container">
+                    <div className="hero hero-body is-large container">
                         <div className="columns">
                             <div className="column is-6 is-offset-3">
                                 <div className="card">
