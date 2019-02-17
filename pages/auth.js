@@ -87,7 +87,7 @@ export default class Register extends React.Component {
         });
     }
     renderCheckBox = () => {
-        if(this.state.userType === "Donor")return(
+        if(this.state.userType === "Donar")return(
             <div className="column">
                 <div className="field">
                     <div className="control">
@@ -174,7 +174,8 @@ export default class Register extends React.Component {
                                                 </footer>
                                             </div>
                                         ) : (
-                                            <div className="card-content">
+                                            <React.Fragment>
+                                                <div className="card-content">
                                                 <div className="content">
                                                     <div className="field">
                                                         <div className="control">
@@ -199,7 +200,7 @@ export default class Register extends React.Component {
                                                                     <div className="select is-info">
                                                                         <select onChange={e => {this.setState({userType: e.target.value})}} value={this.state.userType}>
                                                                             <option default value="">User Type</option>
-                                                                            <option value="Donor">Donor</option>
+                                                                            <option value="Donar">Donor</option>
                                                                             <option value="Receiver">Receiver</option>
                                                                         </select>
                                                                     </div>
@@ -265,8 +266,9 @@ export default class Register extends React.Component {
                                                         this.handleRegister();
                                                     }} href="#" className="button is-primary card-footer-item">Register</a>
                                                 </footer>
-                                            </div>
+                                            </React.Fragment>
                                         )}
+                                </div>
                                 </div>
                             </div>
                         </div>
