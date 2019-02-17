@@ -18,6 +18,7 @@ export default class Register extends React.Component {
         dob: '',
         bloodGroup: '',
         rhFactor: '',
+        loginTabActive: true
     };
 
     constructor(props){
@@ -80,6 +81,11 @@ export default class Register extends React.Component {
         });
     }
 
+    toggleTab(){
+        this.setState({loginTabActive: !this.state.loginTabActive});
+        console.log(this.state.loginTabActive);
+    }
+
     render() {
         const { ui } = this.props.store;
         return (
@@ -87,22 +93,42 @@ export default class Register extends React.Component {
                 <Header/>
                 <body>
                     <Navbar/>
-                    <div className="hero">
-                        <div className="hero-body">
-                            <div className="container">
-                                <div className="columns">
-                                    <div className="column">
-                                        <div className="card">
-                                            <header className="card-header">
-                                                <p className="card-header-title">
-                                                    Login
-                                                </p>
-                                                <a href="#" className="card-header-icon" aria-label="more options">
-                                                    <span className="icon">
-                                                        <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                                    </span>
-                                                </a>
-                                            </header>
+                    <br />
+                    <div className="container">
+                        <div className="columns">
+                            <div className="column is-6 is-offset-3">
+                                <div className="card">
+                                    <header className="card-content">
+                                        <div className="tabs is-centered is-fullwidth is-toggle is-toggle-rounded">
+                                            <ul>
+                                                <li className=
+                                                    { this.state.loginTabActive
+                                                                ? "is-active"
+                                                            : ""
+                                                    }
+                                                >
+                                                    <a onClick={() => {
+                                                        this.toggleTab()
+                                                    }}>
+                                                        <span>Login</span>
+                                                    </a>
+                                                </li>
+                                                <li className=
+                                                        { !this.state.loginTabActive
+                                                        ? "is-active"
+                                                        : ""
+                                                    }>
+                                                    <a onClick={() => {
+                                                        this.toggleTab()
+                                                    }}>
+                                                        <span>Signup</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </header>
+                                    {
+                                        this.state.loginTabActive ? (
                                             <div className="card-content">
                                                 <div className="content">
                                                     <div className="field">
@@ -121,26 +147,13 @@ export default class Register extends React.Component {
                                                     </div>
                                                 </div>
                                                 <div className="has-text-danger">{ui.isError && ui.errorMessage}</div>
+                                                <footer className="card-footer">
+                                                    <a onClick={() => {
+                                                        this.handleLogin()
+                                                    }} href="#" className="button is-primary card-footer-item">Login</a>
+                                                </footer>
                                             </div>
-                                            <footer className="card-footer">
-                                                <a onClick={() => {
-                                                    this.handleLogin()
-                                                }} href="#" className="button is-primary card-footer-item">Login</a>
-                                            </footer>
-                                        </div>
-                                    </div>
-                                    <div className="column">
-                                        <div className="card">
-                                            <header className="card-header">
-                                                <p className="card-header-title">
-                                                    Register
-                                                </p>
-                                                <a href="#" className="card-header-icon" aria-label="more options">
-                                                    <span className="icon">
-                                                        <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                                    </span>
-                                                </a>
-                                            </header>
+                                        ) : (
                                             <div className="card-content">
                                                 <div className="content">
                                                     <div className="field">
@@ -151,7 +164,7 @@ export default class Register extends React.Component {
                                                         </div>
                                                     </div>
                                                     <div className="columns">
-                                                        <div className="column is-two-thirds">
+                                                        <div className="column is-8">
                                                             <div className="field">
                                                                 <div className="control">
                                                                     <input value={this.state.email} className="input" type="email" placeholder="Email" onChange={(e) => {
@@ -160,7 +173,7 @@ export default class Register extends React.Component {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className="column">
+                                                        <div className="column is-4">
                                                             <div className="field">
                                                                 <div className="control">
                                                                     <div className="select is-info">
@@ -175,7 +188,7 @@ export default class Register extends React.Component {
                                                         </div>
                                                     </div>
                                                     <div className="columns">
-                                                        <div className="column">
+                                                        <div className="column is-4">
                                                             <div className="field">
                                                                 <div className="control">
                                                                     <div className="select is-info">
@@ -190,7 +203,7 @@ export default class Register extends React.Component {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className="column">
+                                                        <div className="column is-4">
                                                             <div className="field">
                                                                 <div className="control">
                                                                     <div className="select is-info">
@@ -203,7 +216,7 @@ export default class Register extends React.Component {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className="column">
+                                                        <div className="column is-4">
                                                             <div className="field">
                                                                 <div className="control">
                                                                     <input value={this.state.dob} className="input" type="date" placeholder="Bate Of Birth" onChange={(e) => {
@@ -226,14 +239,13 @@ export default class Register extends React.Component {
                                                     </div>
                                                 </div>
                                                 <div className="has-text-danger">{ui.isError && ui.errorMessage}</div>
+                                                <footer className="card-footer">
+                                                    <a onClick={() => {
+                                                        this.handleRegister();
+                                                    }} href="#" className="button is-primary card-footer-item">Register</a>
+                                                </footer>
                                             </div>
-                                            <footer className="card-footer">
-                                                <a onClick={() => {
-                                                    this.handleRegister();
-                                                }} href="#" className="button is-primary card-footer-item">Register</a>
-                                            </footer>
-                                        </div>
-                                    </div>
+                                        )}
                                 </div>
                             </div>
                         </div>
