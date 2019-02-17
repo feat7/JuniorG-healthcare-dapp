@@ -24,7 +24,7 @@ export const login = (userDetails, store) => {
 };
 
 export const register = (userDetails, store) => {
-  const { user } = store;
+  const { user, ui } = store;
   return axios
     .post(`${apiServer}/api/users`, {
       user: userDetails
