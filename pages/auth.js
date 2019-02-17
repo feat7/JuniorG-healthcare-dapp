@@ -75,12 +75,16 @@ export default class Register extends React.Component {
         register(data, this.props.store).then(function(response){
             console.log(response);
             const userType = get(["user","userType"])(response);
+            const live = get(["live"])(response);
             if(userType == 'Receiver') {
                 //To Receiver dashboard
                 Router.replace('/addreciever');
-            } else if(userType == 'Donar') {
+            } else if(userType == 'Donar' && live) {
                 Router.replace('/addlivedonor');
-            } else if(userType == 'Admin') {
+            }else if(userType == 'Donar' && !live) {
+                Router.replace('/adddeaddonor');
+            }
+            else if(userType == 'Admin') {
                 // To admin
                 Router.replace('/dashboardVerify');
             }
