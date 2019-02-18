@@ -1,4 +1,4 @@
-#Junior G
+# Team Junior G - Organ Trafficking solution with blockchain
 
 Clone the repository somewhere and then `cd` in to the cloned directory
 
