@@ -1,8 +1,8 @@
 # Team Junior G - Organ Trafficking solution with blockchain
 
-Clone the repository somewhere and then `cd` in to the cloned directory
+Clone the repository somewhere and then `cd` in to the cloned directory.
 
-Then run these commands
+Then run these commands:-
 
 `npm install`
 
