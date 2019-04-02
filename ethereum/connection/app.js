@@ -279,6 +279,6 @@ module.exports = {
                 return e;
             });
     },
-
+    wallet: wallet,
     dOrgan: dOrgan
 };

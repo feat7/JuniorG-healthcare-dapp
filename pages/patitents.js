@@ -15,7 +15,7 @@ export default class Patients extends React.Component {
 
     showBlockDetails(item) {
         axios.get(`${apiServer}/api/users/get-details/${item}`)
-        .then(response => console.log(response.data));
+        //.then(response => console.log(response.data));
         // getAllData({ ethAddress: item }).then(res => console.log(res));
     }
 

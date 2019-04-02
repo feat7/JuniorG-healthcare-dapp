@@ -97,7 +97,7 @@ export default class Register extends React.Component {
                     <div className="control">
                             <label className="checkbox">
                                 <input value={this.state.live} onChange={e => {this.setState({live: e.target.value})}} type="checkbox"/>
-                                    Living
+                                 Living
                             </label>
                         </div>
                     </div>
